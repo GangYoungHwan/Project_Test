@@ -65,8 +65,11 @@
     <Compile Include="Assets\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
     <Compile Include="Assets\AurynSky\Dungeon Pack\Scripts\TrapDoorDemo.cs" />
     <Compile Include="Assets\Lava_Flowing_Shader\Scripts\ScrollingUVs_Layers.cs" />
+    <Compile Include="Assets\RTS Selector\Example Scene\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\SelectManager.cs" />
+    <Compile Include="Assets\Scripts\SelectableCharacter.cs" />
     <Compile Include="Assets\Scripts\Tower.cs" />
     <Compile Include="Assets\StarfieldMaterials\Scripts\Move.cs" />
     <None Include="Assets\Lava_Flowing_Shader\Shaders\Diffuse_Lava_Distort.shader" />
@@ -74,6 +77,7 @@
     <None Include="Assets\AurynSky\Dungeon Pack\READ ME.txt" />
     <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort_Transparent.shader" />
     <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort.shader" />
+    <None Include="Assets\RTS Selector\Info.txt" />
     <None Include="Assets\StarfieldMaterials\README\Readme.txt" />
     <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Simple.shader" />
     <Reference Include="UnityEngine">
