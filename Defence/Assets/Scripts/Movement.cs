@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
-    public Transform _taget;
+    GameObject _taget;
     NavMeshAgent _agent;
     Animator _animator;
 
@@ -13,11 +13,13 @@ public class Movement : MonoBehaviour
     {
         _agent = this.GetComponent<NavMeshAgent>();
         _animator = this.GetComponentInChildren<Animator>();
+
+        _taget = GameObject.Find("Tower");
     }
 
     void Update()
     {
-        _agent.SetDestination(_taget.position);
+        _agent.SetDestination(_taget.transform.position);
         _animator.SetFloat("MoveSpeed", 1.0f);
     }
 }
