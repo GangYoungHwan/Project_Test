@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\SelectManager.cs" />
     <Compile Include="Assets\Scripts\SelectableCharacter.cs" />
     <Compile Include="Assets\Scripts\Tower.cs" />
+    <Compile Include="Assets\Scripts\WayPoint.cs" />
     <Compile Include="Assets\StarfieldMaterials\Scripts\Move.cs" />
     <None Include="Assets\Lava_Flowing_Shader\Shaders\Diffuse_Lava_Distort.shader" />
     <None Include="Assets\Lava_Flowing_Shader\ReadMe.txt" />
