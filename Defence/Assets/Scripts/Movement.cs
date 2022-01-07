@@ -5,47 +5,72 @@ using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
-    GameObject _taget;
+    GameObject _target;
     NavMeshAgent _agent;
     Animator _animator;
 
     int way;
+    bool wayon;
+
     void Start()
     {
-        way = 1;
+        way = 0;
         _agent = this.GetComponent<NavMeshAgent>();
         _animator = this.GetComponentInChildren<Animator>();
-        _taget = GameObject.Find("Way1End");
+        _target = GameObject.Find("Way1End");
+        if (_target != null) _agent.SetDestination(_target.transform.position);
+        _animator.SetFloat("MoveSpeed", 1.0f);
     }
 
     void Update()
     {
-        if(_agent.remainingDistance<0.3f)
+
+
+    }
+
+    public void Moving()
+    {
+        _animator.ResetTrigger("Attack");
+        _animator.SetTrigger("StopAttack");
+        if (_agent != null && _agent.enabled)
         {
-            switch (way)
+            if (_agent.remainingDistance < 0.3f && !wayon)
             {
-                case 1:
-                    _taget = GameObject.Find("Way2End");
-                    way =2;
-                    Debug.Log("Way2이동");
-                    break;
-                case 2:
-                    _taget = GameObject.Find("Way3End");
-                    way = 3;
-                    Debug.Log("Way3이동");
-                    break;
-                case 3:
-                    _taget = GameObject.Find("WayEnd");
-                    way = 4;
-                    Debug.Log("WayEnd이동");
-                    break;
-                case 4:
-                    _taget = GameObject.Find("Tower");
-                    Debug.Log("타워이동");
-                    break;
+                way++;
+                switch (way)
+                {
+                    case 1:
+                        _target = GameObject.Find("Way2End");
+                        break;
+                    case 2:
+                        _target = GameObject.Find("Way3End");
+                        break;
+                    case 3:
+                        _target = GameObject.Find("WayEnd");
+                        break;
+                    case 4:
+                        _target = GameObject.Find("Tower");
+                        break;
+                    case 5:
+                        break;
+                }
+                if (_target != null)
+                {
+                    _agent.isStopped = false;
+                    _agent.SetDestination(_target.transform.position);
+                }
+                wayon = true;
             }
-            if (_taget != null) _agent.SetDestination(_taget.transform.position);
-            _animator.SetFloat("MoveSpeed", 1.0f);
+            else wayon = false;
+        }
+    }
+
+    public void MovingEnd()
+    {
+        if (_agent != null && _agent.enabled)
+        {
+            _animator.SetFloat("MoveSpeed",0.0f);
+            _agent.isStopped = true;
         }
     }
 }
