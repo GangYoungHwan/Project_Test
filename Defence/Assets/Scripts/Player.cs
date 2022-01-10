@@ -10,15 +10,24 @@ public class Player : MonoBehaviour
     public float _Distance = 15.0f;
 
     List<GameObject> FoundObjects;
-    GameObject _target;
+    public GameObject _target;
     float shortDis;
 
-    float _attackDelay = 2.0f;
+    float _attackDelay = 1.0f;
     float _lastAttack = 0.0f;
+
+    public GameObject _arrow;
+    public Transform _firePosition;
+    NavMeshAgent _arrowAgent;
+    List<GameObject> _arr;
+    bool moving;
+    bool arrowAttacking;
     void Start()
     {
+        moving = false;
         _animator = this.GetComponent<Animator>();
         _agent = this.GetComponent<NavMeshAgent>();
+        _arr = new List<GameObject>();
     }
 
     void Update()
@@ -38,31 +47,36 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Vector3.Distance(this.transform.position, _target.transform.position) < _Distance)//사정거리
+        if (Vector3.Distance(this.transform.position, _target.transform.position) < _Distance&& !moving)//사정거리
         {
             
             if (_lastAttack < _attackDelay)
             {
-                _agent.isStopped = false;
-                _animator.ResetTrigger("Attack");
-                _animator.SetTrigger("StopAttack");
-                UpdateAnimator();
-            }
-            else
-            {
-                _agent.isStopped = true;
                 this.transform.LookAt(_target.transform);
                 _animator.ResetTrigger("StopAttack");
                 _animator.SetTrigger("Attack");
+                if(arrowAttacking) ArrowAttack();
+            }
+            else
+            {
+                _animator.ResetTrigger("Attack");
+                _animator.SetTrigger("StopAttack");
+                UpdateAnimator();
+                arrowAttacking = true;
                 _lastAttack = 0.0f;
             }
         
         }
+        else if(moving)
+        {
+            StopAttack();
+            UpdateAnimator();
+        }
         else
         {
             UpdateAnimator();
-            StopAttack();
         }
+        UpdateAnimator();
 
     }
     private void UpdateAnimator()
@@ -70,11 +84,21 @@ public class Player : MonoBehaviour
         Vector3 velocity = _agent.velocity;
         Vector3 local = this.transform.InverseTransformDirection(velocity);
         _animator.SetFloat("MoveSpeed", local.z);
+        if (local.z > 0) moving = true;
+        else moving = false;
     }
 
     void StopAttack()
     {
         _animator.ResetTrigger("Attack");
         _animator.SetTrigger("StopAttack");
+    }
+
+    void ArrowAttack()
+    {
+        GameObject arrow = Instantiate(_arrow);
+        _arr.Add(arrow);
+        arrow.transform.position = _firePosition.position;
+        arrowAttacking = false;
     }
 }

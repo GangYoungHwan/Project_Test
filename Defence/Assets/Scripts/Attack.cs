@@ -36,6 +36,7 @@ public class Attack : MonoBehaviour
     private void Attacking()
     {
         this.transform.LookAt(_target.transform);
+        //this.transform.forward = _target.transform.forward;
 
         if (_lastAttack < _attackDelay)
         {
