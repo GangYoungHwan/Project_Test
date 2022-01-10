@@ -6,32 +6,7 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Vampire_MAT
-    second: {fileID: 2100000, guid: ab56bdb851b15f04cba001d50e093b7f, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Vampire_diffuse
-    second: {fileID: 2800000, guid: 8579446afe0c36b4ba3675413872c010, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Vampire_emission
-    second: {fileID: 2800000, guid: 2148a39cab66de54ea6075e62e15e421, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Vampire_normal
-    second: {fileID: 2800000, guid: fb7cac6b7989beb43952c2d1b0267e5e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Vampire_specular
-    second: {fileID: 2800000, guid: 5396f4de0158031459b0b65a26abd128, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -99,7 +74,7 @@ ModelImporter:
   referencedClips:
   - 023b933befe38e347923f9e700ece807
   - ebc8c84f5de54f246927bc681adc8e15
-  - a1cdee87628ea6d498f0680b79bdfed8
+  - 658bc3050e2960a4c9fd1057032616f8
   importAnimation: 1
   humanDescription:
     serializedVersion: 3

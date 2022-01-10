@@ -32,6 +32,7 @@ public class Movement : MonoBehaviour
     {
         _animator.ResetTrigger("Attack");
         _animator.SetTrigger("StopAttack");
+        
         if (_agent != null && _agent.enabled)
         {
             if (_agent.remainingDistance < 0.3f && !wayon)
@@ -56,6 +57,7 @@ public class Movement : MonoBehaviour
                 }
                 if (_target != null)
                 {
+                    _animator.SetFloat("MoveSpeed", 1.0f);
                     _agent.isStopped = false;
                     _agent.SetDestination(_target.transform.position);
                 }

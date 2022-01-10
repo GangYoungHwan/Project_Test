@@ -50341,7 +50341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89fee120dcb60942a19974401baf02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _EnemyNormal: {fileID: 9150929759608119568, guid: be1e6cf02d5d352469176f3a2c1ea20b,
+  _EnemyNormal: {fileID: 6352608728148198689, guid: d1d6714838b32cf4eb08b90e3db153e2,
     type: 3}
   _EnemyObjectPool: []
 --- !u!4 &1261109470
