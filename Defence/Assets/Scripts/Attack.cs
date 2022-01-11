@@ -21,6 +21,7 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
+        if (this.gameObject == null) return;
         _lastAttack += Time.deltaTime;
         if (IsinRange() == false)
         {

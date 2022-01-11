@@ -22,11 +22,14 @@ public class Arrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_player._target != null)
+        if (_target != null)
         {
             this.transform.LookAt(_target);
             this.transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed);
+        } 
+        else
+        {
+            Destroy(this.gameObject);
         }
-        
     }
 }
