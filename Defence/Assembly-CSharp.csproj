@@ -62,37 +62,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
-    <Compile Include="Assets\AurynSky\Dungeon Pack\Scripts\TrapDoorDemo.cs" />
-    <Compile Include="Assets\Lava_Flowing_Shader\Scripts\ScrollingUVs_Layers.cs" />
+    <Compile Include="Assets\Defence\Prefabs\Maps\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
+    <Compile Include="Assets\Defence\Prefabs\Maps\AurynSky\Dungeon Pack\Scripts\TrapDoorDemo.cs" />
+    <Compile Include="Assets\Defence\Scripts\Billboard.cs" />
+    <Compile Include="Assets\Defence\Scripts\CrystalRot.cs" />
+    <Compile Include="Assets\Defence\Scripts\Enemy\Attack.cs" />
+    <Compile Include="Assets\Defence\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Defence\Scripts\Enemy\EnemyManager.cs" />
+    <Compile Include="Assets\Defence\Scripts\Enemy\EnemyNormal.cs" />
+    <Compile Include="Assets\Defence\Scripts\Enemy\Movement.cs" />
+    <Compile Include="Assets\Defence\Scripts\Player\Arrow.cs" />
+    <Compile Include="Assets\Defence\Scripts\Player\ArrowHit.cs" />
+    <Compile Include="Assets\Defence\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Defence\Scripts\RTS\RTS Selector\Example Scene\Scripts\CameraScript.cs" />
+    <Compile Include="Assets\Defence\Scripts\RTS\SelectManager.cs" />
+    <Compile Include="Assets\Defence\Scripts\RTS\SelectableCharacter.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\ReverseNormals.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\randomParticleRotation.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\rotation.cs" />
-    <Compile Include="Assets\RTS Selector\Example Scene\Scripts\CameraScript.cs" />
-    <Compile Include="Assets\Scripts\Arrow.cs" />
-    <Compile Include="Assets\Scripts\ArrowHit.cs" />
-    <Compile Include="Assets\Scripts\Attack.cs" />
-    <Compile Include="Assets\Scripts\Billboard.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\EnemyManager.cs" />
-    <Compile Include="Assets\Scripts\EnemyNormal.cs" />
-    <Compile Include="Assets\Scripts\Movement.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\SelectManager.cs" />
-    <Compile Include="Assets\Scripts\SelectableCharacter.cs" />
-    <Compile Include="Assets\Scripts\Tower.cs" />
-    <Compile Include="Assets\Scripts\WayPoint.cs" />
-    <Compile Include="Assets\StarfieldMaterials\Scripts\Move.cs" />
     <None Include="Assets\Particle Ribbon by Moonflower Carnivore\readme_Simple_Particle_Ribbon.txt" />
-    <None Include="Assets\Lava_Flowing_Shader\Shaders\Diffuse_Lava_Distort.shader" />
     <None Include="Assets\Particle Ribbon by Moonflower Carnivore\Shaders\Particle Alpha Blend HDR.shader" />
-    <None Include="Assets\Lava_Flowing_Shader\ReadMe.txt" />
-    <None Include="Assets\AurynSky\Dungeon Pack\READ ME.txt" />
-    <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort_Transparent.shader" />
-    <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort.shader" />
-    <None Include="Assets\RTS Selector\Info.txt" />
-    <None Include="Assets\StarfieldMaterials\README\Readme.txt" />
-    <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Simple.shader" />
+    <None Include="Assets\Defence\Prefabs\Maps\AurynSky\Dungeon Pack\READ ME.txt" />
+    <None Include="Assets\Defence\Scripts\RTS\RTS Selector\Info.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
