@@ -5,60 +5,51 @@ using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
+    public static EnemyManager instance;
     public GameObject _EnemyNormal;
 
-    public List<GameObject> _EnemyObjectPool;
-    int _count;
-    int _dieCount;
+    public bool GameOver = false;
+    public float _createTime = 3.0f;
+    public float _reSpwanTime = 30.0f;
+    
+    public int _maxEnemy = 10;
+    int EnemyCount = 0;
 
-    public float _currentTime;
-    public int _remainingTime;
-
-    int _round;
-    void Start()
+    public int _round = 1;
+    public void Start()
     {
-        _round = 0;
-        _currentTime = 0.0f;
-        _remainingTime = 60;
+        instance = this;
     }
     private void Awake()
     {
-        _count = 0;
-        _dieCount = 0;
-        _EnemyObjectPool = new List<GameObject>();
-        StartCoroutine(EnemySpawn());
+        StartCoroutine(CreateEnemy());
     }
 
     void Update()
     {
-        if (_remainingTime + 1 < 60)
-        {
-            _round++;
-            _currentTime = 0.0f;
-            _remainingTime = 0;
-            
-        }
-        else
-        {
-            _currentTime += Time.deltaTime;
-            _remainingTime = (int)_currentTime % 60;
-        }
-        if(_count<10)
-        {
-            Debug.Log("몬스터생성 중단");
-        }
-    }
 
-    IEnumerator EnemySpawn()
+    }
+    IEnumerator CreateEnemy()
     {
-        for (int i = 0; i < _EnemyObjectPool.Count+1; i++)
+        while(!GameOver)
         {
-            GameObject Normal = Instantiate(_EnemyNormal);
-            _EnemyObjectPool.Add(Normal);
-            _EnemyObjectPool[i].transform.position = this.transform.position;
-            _EnemyObjectPool[i].GetComponent<NavMeshAgent>().enabled = true;
-            yield return new WaitForSeconds(3.0f);
-            _count++;
+            int CreateEnemyCount = (int)GameObject.FindGameObjectsWithTag("Enemy").Length;
+            if (CreateEnemyCount > 100) GameOver = true;
+
+            if (EnemyCount< _maxEnemy)
+            {
+                yield return new WaitForSeconds(_createTime);
+                Instantiate(_EnemyNormal, this.transform.position, this.transform.rotation);
+                _EnemyNormal.GetComponent<NavMeshAgent>().enabled = true;
+                EnemyCount++;
+            }
+            else
+            {
+                yield return new WaitForSeconds(_reSpwanTime);
+                _round++;
+                EnemyCount = 0;
+            }
+
         }
     }
 }

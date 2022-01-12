@@ -34,6 +34,7 @@ public class Attack : MonoBehaviour
         {
             _animator.ResetTrigger("StopAttack");
             _animator.SetTrigger("Attack");
+            Damage(Enemy.instance.Enemy_att);
             _lastAttack = 0.0f;
         }
     }
@@ -42,5 +43,10 @@ public class Attack : MonoBehaviour
     {
         dis = Vector3.Distance(target.transform.position, this.transform.position);
         return dis < _Distance;
+    }
+
+    public void Damage(int att)
+    {
+        TowerManager.instance.Tower_HP -= att;
     }
 }
