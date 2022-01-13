@@ -5,6 +5,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(RectTransform))]
 public class SelectManager : MonoBehaviour
 {
+    public static SelectManager Instance;
     NavMeshAgent _agent;
 
     public Camera selectCam;
@@ -22,7 +23,10 @@ public class SelectManager : MonoBehaviour
 
     public List<SelectableCharacter> selectableChars = new List<SelectableCharacter>();
     private List<SelectableCharacter> selectedArmy = new List<SelectableCharacter>();
-
+    public void Start()
+    {
+        Instance = this;
+    }
     private void Awake()
     {
         //This assumes that the manager is placed on the image used to select
@@ -179,7 +183,7 @@ public class SelectManager : MonoBehaviour
         }
     }
 
-    private bool Moving()
+    public bool Moving()
     {
         RaycastHit hit;
         if (Physics.Raycast(GetMouseRay(), out hit, 100.0f))

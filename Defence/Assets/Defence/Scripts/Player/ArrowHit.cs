@@ -7,7 +7,7 @@ public class ArrowHit : MonoBehaviour
     int _Dmg;
     void Start()
     {
-        GameObject obj = GameObject.FindWithTag("Player");//나중에 아쳐로 변경하기
+        GameObject obj = GameObject.FindWithTag("Archer");
         _Dmg = obj.GetComponent<Player>().Damage;
     }
     private void OnTriggerEnter(Collider other)

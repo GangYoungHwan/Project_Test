@@ -11,7 +11,7 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         _speed = 1.0f;
-        GameObject obj = GameObject.FindWithTag("Player");
+        GameObject obj = GameObject.FindWithTag("Archer");
         if (obj != null)
         {
             _player = obj.GetComponent<Player>();
