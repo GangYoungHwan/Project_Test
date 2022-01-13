@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public GameObject _target;
     float shortDis;
 
-    float _attackDelay;
+    public float _attackDelay = 1.0f;
     float _lastAttack = 2.1f;
     public float _attackSpeed = 1.0f;
 
@@ -31,9 +31,6 @@ public class Player : MonoBehaviour
         _animator = this.GetComponent<Animator>();
         _agent = this.GetComponent<NavMeshAgent>();
         _arr = new List<GameObject>();
-
-        if (this.gameObject.tag == "NinJa") _attackDelay = 1.5f;
-        else _attackDelay = 1.0f;
     }
 
     void Update()
@@ -60,8 +57,8 @@ public class Player : MonoBehaviour
         Vector3 local = this.transform.InverseTransformDirection(velocity);
         if (local.z == 0) moving = false;
         else moving = true;
-
-        if(moving)
+        _animator.SetFloat("AttackSpeed", _attackSpeed);
+        if (moving)
         {
             UpdateAnimator();
         }
@@ -72,14 +69,11 @@ public class Player : MonoBehaviour
                 _lastAttack += Time.deltaTime;
                 if (_lastAttack < _attackDelay)
                 {
-                    AttackTrigger();
-    
+                    UpdateAnimator();
                 }
                 else
                 {
-                    if (this.gameObject.tag == "Archer") ArrowAttack();
-                    if (this.gameObject.tag == "Ninja") DaggerAttack();
-                    _lastAttack = 0.0f;
+                    AttackTrigger();
                 }
             }
             else
@@ -90,35 +84,37 @@ public class Player : MonoBehaviour
     }
     private void UpdateAnimator()
     {
-        StopAttack();
+        _animator.ResetTrigger("Attack");
+        _animator.SetTrigger("StopAttack");
         Vector3 velocity = _agent.velocity;
         Vector3 local = this.transform.InverseTransformDirection(velocity);
         _animator.SetFloat("MoveSpeed", local.z);
     }
 
-    void StopAttack()
+    void StopAttack(float delay)
     {
         _agent.isStopped = false;
         _animator.ResetTrigger("Attack");
         _animator.SetTrigger("StopAttack");
+        _lastAttack = delay;
     }
 
     void ArrowAttack()
     {
-        StopAttack();
         _animator.SetFloat("MoveSpeed", 0);
         GameObject arrow = Instantiate(_waepon);
         _arr.Add(arrow);
         arrow.transform.position = _firePosition.position;
+        _lastAttack = 0.0f;
     }
 
     void DaggerAttack()
     {
-        StopAttack();
         _animator.SetFloat("MoveSpeed", 0);
         GameObject Dagger = Instantiate(_waepon);
         _arr.Add(Dagger);
         Dagger.transform.position = _firePosition.position;
+        _lastAttack = 0.0f;
     }
     void AttackTrigger()
     {
