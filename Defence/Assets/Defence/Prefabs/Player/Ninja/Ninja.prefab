@@ -195,7 +195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Distance: 15
   _target: {fileID: 0}
-  _attackSpeed: 1
+  _attackDelay: 1.5
+  _attackSpeed: 2
   _waepon: {fileID: 0}
   _firePosition: {fileID: 7290051760633045608}
   Damage: 0

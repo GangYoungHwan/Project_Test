@@ -41801,7 +41801,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.93333334
+  - time: 0.96666664
     functionName: StopAttack
     data: 
     objectReferenceParameter: {fileID: 2837155107422316245, guid: 2e442e1d0068a2c46b1a95be80faaec4,

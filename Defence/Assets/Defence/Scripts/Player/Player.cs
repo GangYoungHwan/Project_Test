@@ -13,9 +13,10 @@ public class Player : MonoBehaviour
     public GameObject _target;
     float shortDis;
 
-    public float _attackDelay = 1.0f;
-    float _lastAttack = 2.1f;
-    public float _attackSpeed = 1.0f;
+    float _attackDelay = 1.0f;
+    float _lastAttack = 0.0f;
+    float _attackSpeed = 1.0f;
+    public int AttackSpeed = 1;
 
     public GameObject _waepon;
     public Transform _firePosition;
@@ -35,51 +36,26 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //_lastAttack += Time.deltaTime;
-        FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
-        if (FoundObjects.Count > 0)
-        {
-            shortDis = Vector3.Distance(gameObject.transform.position, FoundObjects[0].transform.position);
-            _target = FoundObjects[0];
-        }
-
-        foreach (GameObject found in FoundObjects)
-        {
-            float dis = Vector3.Distance(gameObject.transform.position, found.transform.position);
-            if (dis < shortDis)
-            {
-                _target = found;
-                shortDis = dis;
-            }
-        }
-
-        Vector3 velocity = _agent.velocity;
-        Vector3 local = this.transform.InverseTransformDirection(velocity);
-        if (local.z == 0) moving = false;
-        else moving = true;
-        _animator.SetFloat("AttackSpeed", _attackSpeed);
-        if (moving)
+        MovingCheck();
+        if (moving)//이동할때
         {
             UpdateAnimator();
         }
-        else
+        else//이동을 멈출때
         {
-            if(IsinRange()==true)
+            Targeting();//타겟팅 찾기
+            if (_target != null)//이동을 멈추고 타겟팅이 있다면?
             {
-                _lastAttack += Time.deltaTime;
-                if (_lastAttack < _attackDelay)
+                if (IsinRange() == true)//타겟팅이 사거리안에 있다면?
                 {
-                    UpdateAnimator();
+                    AttackSpeeding(AttackSpeed);//공격속도조절
+                    _lastAttack += Time.deltaTime;
+                    if (_lastAttack < _attackDelay) UpdateAnimator();//공격딜레이
+                    else AttackTrigger();//공격딜레이가 끝났다면 공격
                 }
-                else
-                {
-                    AttackTrigger();
-                }
+                else UpdateAnimator();//타겟팅이 사거리 없다면?
             }
-            else
-            {
-                UpdateAnimator();
-            }
+            else UpdateAnimator();// 이동을 멈추고 타겟팅이 없다면?
         }
     }
     private void UpdateAnimator()
@@ -116,21 +92,31 @@ public class Player : MonoBehaviour
         Dagger.transform.position = _firePosition.position;
         _lastAttack = 0.0f;
     }
+
+    void FireMagicAttack()
+    {
+        _animator.SetFloat("MoveSpeed", 0);
+        GameObject FireMagic = Instantiate(_waepon);
+        _arr.Add(FireMagic);
+        FireMagic.transform.position = _firePosition.position;
+        _lastAttack = 0.0f;
+    }
+
     void AttackTrigger()
     {
-        _agent.isStopped = true;
         this.transform.LookAt(_target.transform);
         _animator.ResetTrigger("StopAttack");
         _animator.SetTrigger("Attack");
-        _agent.isStopped = false;
-        Attacking = false;
     }
-    void Targeting()
+    public void Targeting()
     {
+        //==========================================================
+        GameObject obj = GameObject.FindGameObjectWithTag("Enemy");
+        if (obj == null) return; //오류보기싫어서 넣음
+        //==========================================================
         FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
         shortDis = Vector3.Distance(gameObject.transform.position, FoundObjects[0].transform.position);
         _target = FoundObjects[0];
-
         foreach (GameObject found in FoundObjects)
         {
             float dis = Vector3.Distance(gameObject.transform.position, found.transform.position);
@@ -144,7 +130,38 @@ public class Player : MonoBehaviour
 
     public bool IsinRange()
     {
+        if (_target == null) return false;
         float dis = Vector3.Distance(_target.transform.position, this.transform.position);
         return dis < _Distance;
+    }
+
+    public void AttackSpeeding(int speed)
+    {
+        switch(speed)
+        {
+            case 1:
+                _attackSpeed = 1.0f;
+                _attackDelay = 1.0f;
+                break;
+            case 2:
+                _attackSpeed = 1.5f;
+                _attackDelay = 0.5f;
+                break;
+            case 3:
+                _attackSpeed = 2.0f;
+                _attackDelay = 0.1f;
+                break;
+
+        }
+
+        _animator.SetFloat("AttackSpeed", _attackSpeed);
+    }
+
+    public void MovingCheck()
+    {
+        Vector3 velocity = _agent.velocity;
+        Vector3 local = this.transform.InverseTransformDirection(velocity);
+        if (local.z == 0) moving = false;
+        else moving = true;
     }
 }
