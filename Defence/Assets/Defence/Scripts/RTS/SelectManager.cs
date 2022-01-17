@@ -19,10 +19,12 @@ public class SelectManager : MonoBehaviour
     public float selectUnderMouseTimer = 0.1f;
     private float selectTimer = 0f;
 
-    private bool selecting = false;
+    public bool selecting = false;
 
     public List<SelectableCharacter> selectableChars = new List<SelectableCharacter>();
     private List<SelectableCharacter> selectedArmy = new List<SelectableCharacter>();
+
+    
     public void Start()
     {
         Instance = this;
@@ -55,6 +57,7 @@ public class SelectManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
+
             selectTimer = 0f;
         }
 
@@ -73,6 +76,7 @@ public class SelectManager : MonoBehaviour
         else SelectingBoxRect.sizeDelta = new Vector2(0, 0);
 
         if (Moving() == true) return;
+
 
 
     }
