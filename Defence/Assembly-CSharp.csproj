@@ -82,12 +82,20 @@
     <Compile Include="Assets\Defence\Scripts\RTS\SelectableCharacter.cs" />
     <Compile Include="Assets\Defence\Scripts\Tower\CrystalRot.cs" />
     <Compile Include="Assets\Defence\Scripts\Tower\TowerManager.cs" />
+    <Compile Include="Assets\Defence\Scripts\UI\SelectCharacter.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\ReverseNormals.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\randomParticleRotation.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\rotation.cs" />
+    <Compile Include="Assets\PinwheelFantasyEffect\Script\DemoManager.cs" />
+    <Compile Include="Assets\PinwheelFantasyEffect\Script\FairyDustRandomPosition.cs" />
+    <Compile Include="Assets\PinwheelFantasyEffect\Script\FairyMeteorAddForceDemo.cs" />
+    <Compile Include="Assets\PinwheelFantasyEffect\Script\Fireball.cs" />
+    <Compile Include="Assets\PinwheelFantasyEffect\Script\Spin.cs" />
+    <Compile Include="Assets\PinwheelFantasyEffect\Script\Test.cs" />
     <None Include="Assets\Particle Ribbon by Moonflower Carnivore\readme_Simple_Particle_Ribbon.txt" />
     <None Include="Assets\Particle Ribbon by Moonflower Carnivore\Shaders\Particle Alpha Blend HDR.shader" />
     <None Include="Assets\Defence\Prefabs\Maps\AurynSky\Dungeon Pack\READ ME.txt" />
+    <None Include="Assets\PinwheelFantasyEffect\README.txt" />
     <None Include="Assets\Defence\Scripts\RTS\RTS Selector\Info.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

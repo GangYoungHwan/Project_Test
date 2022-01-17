@@ -195,6 +195,7 @@ public class SelectManager : MonoBehaviour
                     if (soldier.selectImage.enabled)
                     {
                         _agent = soldier.GetComponentInParent<NavMeshAgent>();
+                        _agent.isStopped = false;
                         _agent.destination = hit.point;
                     }
                 }

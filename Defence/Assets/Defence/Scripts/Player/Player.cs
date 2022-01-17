@@ -104,6 +104,7 @@ public class Player : MonoBehaviour
 
     void AttackTrigger()
     {
+        _agent.ResetPath();//이동 리셋
         this.transform.LookAt(_target.transform);
         _animator.ResetTrigger("StopAttack");
         _animator.SetTrigger("Attack");
@@ -161,7 +162,10 @@ public class Player : MonoBehaviour
     {
         Vector3 velocity = _agent.velocity;
         Vector3 local = this.transform.InverseTransformDirection(velocity);
-        if (local.z == 0) moving = false;
+        if (local.z < 0.1f)
+        {
+            moving = false;
+        }
         else moving = true;
     }
 }

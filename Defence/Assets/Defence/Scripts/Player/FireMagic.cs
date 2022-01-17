@@ -10,7 +10,7 @@ public class FireMagic : MonoBehaviour
     Transform _target;
     void Start()
     {
-        _speed = 3.0f;
+        _speed = 0.3f;
         GameObject obj = GameObject.FindWithTag("Wizard");
         if (obj != null)
         {
@@ -19,7 +19,6 @@ public class FireMagic : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_target != null)
