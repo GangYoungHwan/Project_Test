@@ -7,9 +7,28 @@ public class CardUI : MonoBehaviour
 {
     public Camera _camerapos;
     bool _cardOn;
+
+    public Image _image;
+    public Text _name;
+    public Text _text;
+    public Sprite[] _sprite;
+
+    public Image[] _buffimage;
+    public Text[] _buffStack;
+
+    List<int> _skilllist;
+    List<int> _skillStack;
+
+    int count = 0;
     void Start()
     {
         _cardOn = false;
+        _skilllist = new List<int>();
+        _skillStack = new List<int>();
+        for (int i=0; i<10;i++)
+        {
+            _skillStack.Add(1);
+        }
     }
 
 
@@ -31,10 +50,74 @@ public class CardUI : MonoBehaviour
             _camerapos.transform.position = new Vector3(44, 35, 12);
             _cardOn = true;
         }
+        _image.enabled = false;
+        _name.enabled = false;
+        _text.enabled = false;
     }
 
     public void CardSpwan()
     {
+        int rand = Random.Range(0, 10);
+        _skilllist.Add(rand);//스킬리스트 중복검사 수정
+        switch (rand)
+        {
+            case 0:
+                _name.text = "PowerUp";
+                _text.text = "모든 유닛 공격력 증가,공격속도 증가";
+                break;
+            case 1:
+                _name.text = "DaggerPowerUp";
+                _text.text = "닌자 공격력 증가";
+                break;
+            case 2:
+                _name.text = "FlamePowerUp";
+                _text.text = "위자드 공격력 증가";
+                break;
+            case 3:
+                _name.text = "ArrowPowerUp";
+                _text.text = "아처 공격력 증가";
+                break;
+            case 4:
+                _name.text = "Flamedot";
+                _text.text = "위자드 화염도트데미지추가";
+                break;
+            case 5:
+                _name.text = "AddArrow";
+                _text.text = "아처 추가공격증가";
+                break;
+            case 6:
+                _name.text = "AddDagger";
+                _text.text = "닌자 추가공격증가";
+                break;
+            case 7:
+                _name.text = "CriticalArrow";
+                _text.text = "아처 크리티컬확률 증가";
+                break;
+            case 8:
+                _name.text = "CriticalDagger";
+                _text.text = "닌자 크리티컬확률 증가";
+                break;
+            case 9:
+                _name.text = "CriticalMagic";
+                _text.text = "위자드 크리티컬확률 증가";
+                break;
+            case 10:
+                _name.text = "ArrowPowerUp";
+                _text.text = "아처 공격력 증가";
+                break;
+        }
+        _image.sprite = _sprite[rand];
+        buffinfo(rand);
+        _image.enabled = true;
+        _name.enabled = true;
+        _text.enabled = true;
+    }
 
+    public void buffinfo(int num)
+    {
+        _buffimage[count].enabled = true;
+        _buffimage[count].sprite = _sprite[num];
+        _buffStack[count].text = "x"+ _skillStack[num];
+        count++;
     }
 }
