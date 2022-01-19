@@ -19,6 +19,7 @@ public class CardUI : MonoBehaviour
     List<int> _skilllist;
     List<int> _skillStack;
 
+    public int _buffMAX = 10;
     int count = 0;
     void Start()
     {
@@ -58,7 +59,24 @@ public class CardUI : MonoBehaviour
     public void CardSpwan()
     {
         int rand = Random.Range(0, 10);
-        _skilllist.Add(rand);//스킬리스트 중복검사 수정
+        if(_skilllist.Contains(rand))//중복된 버프가 있다면?
+        {
+            if (_skillStack[rand] < _buffMAX)
+            {
+                //다이아차감
+                _skillStack[rand]++;//3스택MAX
+            }
+            else//3스택이상이면
+            {
+                //다이아 돌려줌
+
+            }
+        }
+        else//중복된 버프가 없으면?
+        {
+            _skilllist.Add(rand);//스킬리스트 추가
+        }
+
         switch (rand)
         {
             case 0:
@@ -115,9 +133,11 @@ public class CardUI : MonoBehaviour
 
     public void buffinfo(int num)
     {
-        _buffimage[count].enabled = true;
-        _buffimage[count].sprite = _sprite[num];
-        _buffStack[count].text = "x"+ _skillStack[num];
-        count++;
+        for(int i=0; i< _skilllist.Count; i++)
+        {
+            _buffimage[i].enabled = true;
+            _buffimage[i].sprite = _sprite[_skilllist[i]];
+            _buffStack[i].text = "x" + _skillStack[_skilllist[i]];
+        }
     }
 }
