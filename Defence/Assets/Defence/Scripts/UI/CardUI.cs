@@ -85,6 +85,7 @@ public class CardUI : MonoBehaviour
         }
         _text.enabled = true;
         _modelImage[rand].SetActive(true);
+        GameObject.Find("GameManager").GetComponent<Spwan>().UnitSpwan(rand);
     }
     public void CardSpwan()
     {

@@ -8,6 +8,7 @@ TagManager:
   - Archer
   - Ninja
   - Wizard
+  - GM
   layers:
   - Default
   - TransparentFX

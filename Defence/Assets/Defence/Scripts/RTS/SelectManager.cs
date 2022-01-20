@@ -38,10 +38,10 @@ public class SelectManager : MonoBehaviour
 
         //Searches for all of the objects with the selectable character script
         //Then converts to list
-        SelectableCharacter[] chars = FindObjectsOfType<SelectableCharacter>();
-        for (int i = 0; i <= (chars.Length - 1); i++) {
-            selectableChars.Add(chars[i]);
-        }
+        //SelectableCharacter[] chars = FindObjectsOfType<SelectableCharacter>();
+        //for (int i = 0; i <= (chars.Length - 1); i++) {
+        //    selectableChars.Add(chars[i]);
+        //}
     }
 
     void Update()
@@ -54,6 +54,11 @@ public class SelectManager : MonoBehaviour
             ReSelect();
             SelectingStart = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
             SelectingBoxRect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            SelectableCharacter[] chars = FindObjectsOfType<SelectableCharacter>();
+            for (int i = 0; i <= (chars.Length - 1); i++)
+            {
+                selectableChars.Add(chars[i]);
+            }
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -196,6 +201,7 @@ public class SelectManager : MonoBehaviour
             {
                 foreach (SelectableCharacter soldier in selectableChars)
                 {
+                    
                     if (soldier.selectImage.enabled)
                     {
                         _agent = soldier.GetComponentInParent<NavMeshAgent>();
