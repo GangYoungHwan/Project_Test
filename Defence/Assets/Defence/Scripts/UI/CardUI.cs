@@ -15,17 +15,24 @@ public class CardUI : MonoBehaviour
 
     public Image[] _buffimage;
     public Text[] _buffStack;
+    public GameObject[] _modelImage;
 
     List<int> _skilllist;
     List<int> _skillStack;
 
     public int _buffMAX = 10;
     int count = 0;
+
+    public GameObject _buffOpenUI;
+    public GameObject _unitOpenUI;
+
     void Start()
     {
         _cardOn = false;
         _skilllist = new List<int>();
         _skillStack = new List<int>();
+        _unitOpenUI.SetActive(false);
+        _buffOpenUI.SetActive(false);
         for (int i=0; i<10;i++)
         {
             _skillStack.Add(1);
@@ -41,6 +48,8 @@ public class CardUI : MonoBehaviour
     {
         if (_cardOn)
         {
+            _unitOpenUI.SetActive(false);
+            _buffOpenUI.SetActive(false);
             this.gameObject.SetActive(false);
             _camerapos.transform.position = new Vector3(36, 35, 4);
             _cardOn = false;
@@ -55,9 +64,31 @@ public class CardUI : MonoBehaviour
         _name.enabled = false;
         _text.enabled = false;
     }
-
+    public void UnitCardSpwan()
+    {
+        unitoff();
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                _name.text = "";
+                _text.text = "아쳐\n\n소환 성공!!";
+                break;
+            case 1:
+                _name.text = "";
+                _text.text = "닌자\n\n소환 성공!!";
+                break;
+            case 2:
+                _name.text = "";
+                _text.text = "위자드\n\n소환 성공!!";
+                break;
+        }
+        _text.enabled = true;
+        _modelImage[rand].SetActive(true);
+    }
     public void CardSpwan()
     {
+        unitoff();
         int rand = Random.Range(0, 10);
         if(_skilllist.Contains(rand))//중복된 버프가 있다면?
         {
@@ -139,5 +170,28 @@ public class CardUI : MonoBehaviour
             _buffimage[i].sprite = _sprite[_skilllist[i]];
             _buffStack[i].text = "x" + _skillStack[_skilllist[i]];
         }
+    }
+
+    public void UnitSpwan()
+    {
+        _buffOpenUI.SetActive(false);
+        _unitOpenUI.SetActive(true);
+        unitoff();
+    }
+    public void BuffSpwan()
+    {
+        _unitOpenUI.SetActive(false);
+        _buffOpenUI.SetActive(true);
+        unitoff();
+    }
+    public void unitoff()
+    {
+        for (int i = 0; i < _modelImage.Length; i++)
+        {
+            _modelImage[i].SetActive(false);
+        }
+        _image.enabled = false;
+        _name.enabled = false;
+        _text.enabled = false;
     }
 }
