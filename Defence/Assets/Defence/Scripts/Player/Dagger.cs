@@ -4,32 +4,29 @@ using UnityEngine;
 
 public class Dagger : MonoBehaviour
 {
-    float _speed;
-
-    Player _player;
+    public float _speed = 1.0f;
     Transform _target;
-    void Start()
-    {
-        _speed = 1.0f;
-        GameObject obj = GameObject.FindWithTag("Ninja");
-        if (obj != null)
-        {
-            _player = obj.GetComponent<Player>();
-            _target = _player._target.transform;
-        }
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        if (_target != null)
+        if (TargetFind(_target))
         {
             this.transform.LookAt(_target);
-            this.transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed);
+            this.transform.position = Vector3.MoveTowards(_target.position, _target.position, Time.deltaTime * _speed);
         }
         else
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public bool TargetFind(Transform Target)
+    {
+        if (Target != null)
+        {
+            _target = Target;
+            return true;
+        }
+        else return false;
     }
 }

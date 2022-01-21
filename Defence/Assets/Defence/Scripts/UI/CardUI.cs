@@ -48,6 +48,7 @@ public class CardUI : MonoBehaviour
     {
         if (_cardOn)
         {
+            unitoff();
             _unitOpenUI.SetActive(false);
             _buffOpenUI.SetActive(false);
             this.gameObject.SetActive(false);

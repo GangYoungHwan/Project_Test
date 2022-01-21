@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
         GameObject arrow = Instantiate(_waepon);
         _arr.Add(arrow);
         arrow.transform.position = _firePosition.position;
+        arrow.GetComponent<Arrow>().TargetFind(_target.transform);
         _lastAttack = 0.0f;
     }
 
@@ -90,6 +91,8 @@ public class Player : MonoBehaviour
         GameObject Dagger = Instantiate(_waepon);
         _arr.Add(Dagger);
         Dagger.transform.position = _firePosition.position;
+        Dagger.GetComponent<Dagger>().TargetFind(_target.transform);
+
         _lastAttack = 0.0f;
     }
 
@@ -99,6 +102,7 @@ public class Player : MonoBehaviour
         GameObject FireMagic = Instantiate(_waepon);
         _arr.Add(FireMagic);
         FireMagic.transform.position = _firePosition.position;
+        FireMagic.GetComponent<FireMagic>().TargetFind(_target.transform);
         _lastAttack = 0.0f;
     }
 
@@ -169,7 +173,7 @@ public class Player : MonoBehaviour
 
         if(moving)
         {
-            if (local.z < 0.1f)
+            if (local.z < 0.2f)
             {
                 _agent.ResetPath();//이동 리셋
             }

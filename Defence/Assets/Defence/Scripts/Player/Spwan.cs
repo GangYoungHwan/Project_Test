@@ -8,10 +8,11 @@ public class Spwan : MonoBehaviour
 
     public GameObject[] _unit;
 
-    private List<GameObject> _spwanUnit = new List<GameObject>();
+    public ParticleSystem _spwanEffect;
     void Start()
     {
-
+        _spwanEffect.Stop();
+        
     }
 
    
@@ -22,8 +23,15 @@ public class Spwan : MonoBehaviour
 
     public void UnitSpwan(int num)
     {
-        //GameObject obj = Instantiate(_unit[num], _spwanPos.position, _spwanPos.rotation);
+        _spwanEffect.Play();
+        StartCoroutine(Test(num));
+        //Instantiate(_unit[num], _spwanPos.position, _spwanPos.rotation);
+    }
+
+    IEnumerator Test(int num)
+    {
+        yield return new WaitForSeconds(1.0f);
         Instantiate(_unit[num], _spwanPos.position, _spwanPos.rotation);
-        //_spwanUnit.Add(obj);
+        StopCoroutine(Test(num));
     }
 }

@@ -11,17 +11,11 @@ public class FireMagic : MonoBehaviour
     void Start()
     {
         _speed = 0.3f;
-        GameObject obj = GameObject.FindWithTag("Wizard");
-        if (obj != null)
-        {
-            _player = obj.GetComponent<Player>();
-            _target = _player._target.transform;
-        }
     }
 
     void Update()
     {
-        if (_target != null)
+        if (TargetFind(_target))
         {
             this.transform.LookAt(_target);
             this.transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed);
@@ -30,5 +24,15 @@ public class FireMagic : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public bool TargetFind(Transform Target)
+    {
+        if (Target != null)
+        {
+            _target = Target;
+            return true;
+        }
+        else return false;
     }
 }
