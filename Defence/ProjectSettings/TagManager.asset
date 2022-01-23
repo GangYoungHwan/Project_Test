@@ -9,6 +9,9 @@ TagManager:
   - Ninja
   - Wizard
   - GM
+  - Dia
+  - Exp
+  - Gold
   layers:
   - Default
   - TransparentFX

@@ -846,9 +846,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Distance: 20
   _target: {fileID: 0}
-  AttackSpeed: 3
+  AttackSpeed: 1
   _waepon: {fileID: 3457715517634583639, guid: 64f504b1dcba7b246b058c7236b43579, type: 3}
-  _firePosition: {fileID: 2503895690739799941}
+  _firePosition: {fileID: 2028743758604186233}
   Damage: 0
 --- !u!54 &-3379791265655450640
 Rigidbody:

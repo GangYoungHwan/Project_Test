@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Distance: 30
   _target: {fileID: 0}
-  AttackSpeed: 3
+  AttackSpeed: 1
   _waepon: {fileID: 5576083918434892283, guid: 17973448067929147ad0f15dfc048dec, type: 3}
   _firePosition: {fileID: 8420147711459391197}
   Damage: 0

@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         instance = this;
-        Enemy_HP = 200+(EnemyManager.instance._round*50);
+        Enemy_HP = 200+(info.instance._round*50);
         Enemy_att = Random.Range(10 * EnemyManager.instance._round, 20 * EnemyManager.instance._round);
         _hpbar = this.transform.GetChild(1).transform.GetChild(0).GetComponent<Slider>();
         _hpbar.maxValue = Enemy_HP;
@@ -32,7 +32,6 @@ public class Enemy : MonoBehaviour
         if (Enemy_HP <= 0)
         {
             info.instance.Gold(10);
-            info.instance.Exp(10);
             Destroy(this.gameObject);
         }
 

@@ -226,9 +226,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Distance: 15
   _target: {fileID: 0}
-  AttackSpeed: 3
+  AttackSpeed: 1
   _waepon: {fileID: 4385061518857698565, guid: 3653397f403bd8d4b9a94817030d400a, type: 3}
-  _firePosition: {fileID: 4598775757676622782}
+  _firePosition: {fileID: 1421772274252428662}
   Damage: 0
 --- !u!54 &8622467366115430173
 Rigidbody:
@@ -319,6 +319,12 @@ PrefabInstance:
 --- !u!4 &8803540738688331171 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8c9b875714000d94ea681e6a6dcbe5a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 9054149319859358280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1421772274252428662 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7934756007121485630, guid: 8c9b875714000d94ea681e6a6dcbe5a6,
     type: 3}
   m_PrefabInstance: {fileID: 9054149319859358280}
   m_PrefabAsset: {fileID: 0}

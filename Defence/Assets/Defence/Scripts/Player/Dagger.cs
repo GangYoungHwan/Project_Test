@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dagger : MonoBehaviour
 {
-    public float _speed = 1.0f;
+    public float _speed = 0.3f;
     Transform _target;
 
     void Update()
@@ -12,7 +12,7 @@ public class Dagger : MonoBehaviour
         if (TargetFind(_target))
         {
             this.transform.LookAt(_target);
-            this.transform.position = Vector3.MoveTowards(_target.position, _target.position, Time.deltaTime * _speed);
+            this.transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed);
         }
         else
         {
