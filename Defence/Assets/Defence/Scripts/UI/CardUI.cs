@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CardUI : MonoBehaviour
 {
+    public static CardUI instance;
     public Camera _camerapos;
     bool _cardOn;
 
@@ -26,8 +27,15 @@ public class CardUI : MonoBehaviour
     public GameObject _buffOpenUI;
     public GameObject _unitOpenUI;
 
+    public int _buffAtt = 0;
+    public int _buffAttSpeed = 1;
+    public int _buffArcherAtt = 10;
+    public int _buffNinjaAtt = 10;
+    public int _buffWizardAtt = 20;
+
     void Start()
     {
+        instance = this;
         _cardOn = false;
         _skilllist = new List<int>();
         _skillStack = new List<int>();
@@ -42,7 +50,6 @@ public class CardUI : MonoBehaviour
 
     void Update()
     {
-        
     }
     public void Card()
     {
@@ -113,20 +120,34 @@ public class CardUI : MonoBehaviour
         switch (rand)
         {
             case 0:
-                _name.text = "PowerUp";
-                _text.text = "모든 유닛 공격력 증가,공격속도 증가";
+
+                _buffAtt += 10;
+                if (_buffAttSpeed < 3)
+                {
+                    _name.text = "PowerUp";
+                    _text.text = "모든 유닛 공격력 증가,공격속도 증가";
+                    _buffAttSpeed++;
+                }
+                else
+                {
+                    _name.text = "PowerUp";
+                    _text.text = "모든 유닛 공격력 증가,공격속도 MAX";
+                }
                 break;
             case 1:
                 _name.text = "DaggerPowerUp";
                 _text.text = "닌자 공격력 증가";
+                _buffNinjaAtt += 10;
                 break;
             case 2:
                 _name.text = "FlamePowerUp";
                 _text.text = "위자드 공격력 증가";
+                _buffWizardAtt += 15;
                 break;
             case 3:
                 _name.text = "ArrowPowerUp";
                 _text.text = "아처 공격력 증가";
+                _buffArcherAtt += 10;
                 break;
             case 4:
                 _name.text = "Flamedot";
@@ -153,8 +174,8 @@ public class CardUI : MonoBehaviour
                 _text.text = "위자드 크리티컬확률 증가";
                 break;
             case 10:
-                _name.text = "ArrowPowerUp";
-                _text.text = "아처 공격력 증가";
+                _name.text = "미정";
+                _text.text = "미정";
                 break;
         }
         _image.sprite = _sprite[rand];

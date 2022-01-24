@@ -7,8 +7,9 @@ public class ArrowHit : MonoBehaviour
     int _Dmg;
     void Start()
     {
-        GameObject obj = GameObject.FindWithTag("Archer");
-        _Dmg = obj.GetComponent<Player>().Damage;
+        //GameObject obj = GameObject.FindWithTag("Archer");
+        //_Dmg = obj.GetComponent<Player>().Damage;
+        _Dmg = Player.instance.ArcherDamage;
     }
     private void OnTriggerEnter(Collider other)
     {

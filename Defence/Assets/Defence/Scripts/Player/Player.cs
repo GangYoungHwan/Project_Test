@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     Animator _animator;
     NavMeshAgent _agent;
     public float _Distance = 15.0f;
@@ -16,7 +17,6 @@ public class Player : MonoBehaviour
     float _attackDelay = 1.0f;
     float _lastAttack = 0.0f;
     float _attackSpeed = 1.0f;
-    public int AttackSpeed = 1;
 
     public GameObject _waepon;
     public Transform _firePosition;
@@ -24,11 +24,16 @@ public class Player : MonoBehaviour
     bool moving;
     bool Attacking;
 
-    public int Damage;
+
+    public int AttackSpeed = 1;
+    public int ArcherDamage = 10;
+    public int NinjaDamage = 10;
+    public int WizardDamage = 20;
+
     void Start()
     {
+        instance = this;
         moving = false;
-        Damage = 20;
         _animator = this.GetComponent<Animator>();
         _agent = this.GetComponent<NavMeshAgent>();
         _arr = new List<GameObject>();
@@ -37,6 +42,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         MovingCheck();
+        PlayerBuff();
         if (moving)//이동할때
         {
             UpdateAnimator();
@@ -179,4 +185,16 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void PlayerBuff()
+    {
+        if (CardUI.instance != null)
+        {
+            AttackSpeed = CardUI.instance._buffAttSpeed;
+            ArcherDamage = 10 + CardUI.instance._buffArcherAtt;
+            NinjaDamage = 10 + CardUI.instance._buffNinjaAtt;
+            WizardDamage = 20 + CardUI.instance._buffWizardAtt;
+        }
+    }
 }
+

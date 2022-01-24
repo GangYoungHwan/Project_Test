@@ -7,8 +7,9 @@ public class DaggerHit : MonoBehaviour
     int _Dmg;
     void Start()
     {
-        GameObject obj = GameObject.FindWithTag("Ninja");
-        _Dmg = obj.GetComponent<Player>().Damage;
+        //GameObject obj = GameObject.FindWithTag("Ninja");
+        //_Dmg = obj.GetComponent<Player>().Damage;
+        _Dmg = Player.instance.NinjaDamage;
     }
     private void OnTriggerEnter(Collider other)
     {
