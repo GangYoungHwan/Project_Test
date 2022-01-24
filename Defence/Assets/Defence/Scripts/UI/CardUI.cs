@@ -158,8 +158,8 @@ public class CardUI : MonoBehaviour
                 _text.text = "아처 추가공격증가";
                 break;
             case 6:
-                _name.text = "AddDagger";
-                _text.text = "닌자 추가공격증가";
+                _name.text = "DarkNess";
+                _text.text = "닌자 다크니스 스킬발동";
                 break;
             case 7:
                 _name.text = "CriticalArrow";
