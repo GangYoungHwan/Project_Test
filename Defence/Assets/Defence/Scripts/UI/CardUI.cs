@@ -29,10 +29,19 @@ public class CardUI : MonoBehaviour
 
     public int _buffAtt = 0;
     public int _buffAttSpeed = 1;
-    public int _buffArcherAtt = 10;
-    public int _buffNinjaAtt = 10;
-    public int _buffWizardAtt = 20;
+    public float _buffArcherAtt = 10;
+    public float _buffNinjaAtt = 10;
+    public float _buffWizardAtt = 20;
 
+    //크리티컬 확률
+    public int _buffArcherCritical = 0;
+    public int _buffNinjaCritical = 0;
+    public int _buffWizardCritical = 0;
+
+    //크리티컬 데미지
+    public float _buffArcherCriticalDmg = 0.0f;
+    public float _buffNinjaCriticalDmg = 0.0f;
+    public float _buffWizardCriticalDmg = 0.0f;
     void Start()
     {
         instance = this;
@@ -151,27 +160,33 @@ public class CardUI : MonoBehaviour
                 break;
             case 4:
                 _name.text = "Flamedot";
-                _text.text = "위자드 화염도트데미지추가";
+                _text.text = "위자드 크리티컬데미지 증가";
+                _buffWizardCriticalDmg += 0.3f;
                 break;
             case 5:
                 _name.text = "AddArrow";
-                _text.text = "아처 추가공격증가";
+                _text.text = "아처 크리티컬데미지 증가";
+                _buffArcherCriticalDmg += 0.3f;
                 break;
             case 6:
                 _name.text = "DarkNess";
-                _text.text = "닌자 다크니스 스킬발동";
+                _text.text = "닌자 크리티컬데미지 증가";
+                _buffNinjaCriticalDmg += 0.3f;
                 break;
             case 7:
                 _name.text = "CriticalArrow";
                 _text.text = "아처 크리티컬확률 증가";
+                _buffArcherCritical += 10;
                 break;
             case 8:
                 _name.text = "CriticalDagger";
                 _text.text = "닌자 크리티컬확률 증가";
+                _buffNinjaCritical += 10;
                 break;
             case 9:
                 _name.text = "CriticalMagic";
                 _text.text = "위자드 크리티컬확률 증가";
+                _buffWizardCritical += 10;
                 break;
             case 10:
                 _name.text = "미정";

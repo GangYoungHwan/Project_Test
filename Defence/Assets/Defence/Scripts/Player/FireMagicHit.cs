@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireMagicHit : MonoBehaviour
 {
-    int _Dmg;
+    float _Dmg;
     void Start()
     {
         //GameObject obj = GameObject.FindWithTag("Wizard");

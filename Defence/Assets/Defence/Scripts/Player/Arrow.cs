@@ -6,7 +6,12 @@ public class Arrow : MonoBehaviour
 {
     public float _speed = 0.3f;
     Transform _target;
+    public ParticleSystem _critical;
 
+    void Start()
+    {
+        //_critical.Stop();
+    }
     void Update()
     {
         if (TargetFind(_target))
@@ -28,5 +33,10 @@ public class Arrow : MonoBehaviour
             return true;
         }
         else return false;
+    }
+
+    public void CriticalEffect()
+    {
+        _critical.Play();
     }
 }

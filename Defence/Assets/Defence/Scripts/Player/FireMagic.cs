@@ -8,6 +8,7 @@ public class FireMagic : MonoBehaviour
 
     Player _player;
     Transform _target;
+    public ParticleSystem _critical;
     void Start()
     {
         _speed = 0.3f;

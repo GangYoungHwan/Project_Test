@@ -6,7 +6,7 @@ public class Dagger : MonoBehaviour
 {
     public float _speed = 0.3f;
     Transform _target;
-
+    public ParticleSystem _critical;
     void Update()
     {
         if (TargetFind(_target))

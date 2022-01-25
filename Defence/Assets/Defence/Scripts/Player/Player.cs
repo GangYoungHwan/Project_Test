@@ -26,10 +26,23 @@ public class Player : MonoBehaviour
 
 
     public int AttackSpeed = 1;
-    public int ArcherDamage = 10;
-    public int NinjaDamage = 10;
-    public int WizardDamage = 20;
+    public float ArcherDamage = 10;
+    public float NinjaDamage = 10;
+    public float WizardDamage = 20;
 
+    //크리티컬 확률
+    public int ArcherCritical = 0;
+    public int NinjaCritical = 0;
+    public int WizardCritical = 0;
+
+    //크리티컬 데미지
+    public float ArcherCriticalDmg = 35;
+    public float NinjaCriticalDmg = 35;
+    public float WizardCriticalDmg = 45;
+
+    public int ArcherRand = 0;
+    public int NinjaRand = 0;
+    public int WizardRand = 0;
     void Start()
     {
         instance = this;
@@ -84,10 +97,17 @@ public class Player : MonoBehaviour
     void ArrowAttack()
     {
         _animator.SetFloat("MoveSpeed", 0);
+        
         GameObject arrow = Instantiate(_waepon);
         _arr.Add(arrow);
         arrow.transform.position = _firePosition.position;
         arrow.GetComponent<Arrow>().TargetFind(_target.transform);
+        ArcherRand = Random.Range(0, 100);
+        if (ArcherRand < ArcherCritical)//크리티컬
+        {
+            arrow.GetComponent<Arrow>()._critical.Play();
+            Debug.Log("크리티컬");
+        }
         _lastAttack = 0.0f;
     }
 
@@ -98,7 +118,12 @@ public class Player : MonoBehaviour
         _arr.Add(Dagger);
         Dagger.transform.position = _firePosition.position;
         Dagger.GetComponent<Dagger>().TargetFind(_target.transform);
-
+        NinjaRand = Random.Range(0, 100);
+        if (NinjaRand < NinjaCritical)//크리티컬
+        {
+            Dagger.GetComponent<Dagger>()._critical.Play();
+            Debug.Log("크리티컬");
+        }
         _lastAttack = 0.0f;
     }
 
@@ -109,6 +134,12 @@ public class Player : MonoBehaviour
         _arr.Add(FireMagic);
         FireMagic.transform.position = _firePosition.position;
         FireMagic.GetComponent<FireMagic>().TargetFind(_target.transform);
+        WizardRand = Random.Range(0, 100);
+        if (WizardRand < WizardCritical)//크리티컬
+        {
+            FireMagic.GetComponent<FireMagic>()._critical.Play();
+            Debug.Log("크리티컬");
+        }
         _lastAttack = 0.0f;
     }
 
@@ -190,10 +221,29 @@ public class Player : MonoBehaviour
     {
         if (CardUI.instance != null)
         {
+            if (ArcherRand < ArcherCritical)//크리티컬
+            {
+                ArcherDamage = (10 + CardUI.instance._buffArcherAtt)* ArcherCriticalDmg;
+                //Debug.Log("아쳐 크리티컬");
+            }
+            else
+            {
+                ArcherDamage = 10 + CardUI.instance._buffArcherAtt;
+            }
             AttackSpeed = CardUI.instance._buffAttSpeed;
-            ArcherDamage = 10 + CardUI.instance._buffArcherAtt;
+            //ArcherDamage = 10 + CardUI.instance._buffArcherAtt;
             NinjaDamage = 10 + CardUI.instance._buffNinjaAtt;
             WizardDamage = 20 + CardUI.instance._buffWizardAtt;
+
+            //크리티컬 확률
+            ArcherCritical = CardUI.instance._buffArcherCritical;
+            NinjaCritical = CardUI.instance._buffNinjaCritical;
+            WizardCritical = CardUI.instance._buffWizardCritical;
+
+            
+            ArcherCriticalDmg = 1.5f+ CardUI.instance._buffArcherCriticalDmg;
+            NinjaCriticalDmg = 1.5f+ CardUI.instance._buffNinjaCriticalDmg;
+            WizardCriticalDmg = 1.5f+ CardUI.instance._buffWizardCriticalDmg;
         }
     }
 }
