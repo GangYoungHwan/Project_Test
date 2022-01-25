@@ -15,6 +15,7 @@ public class ArrowHit : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            other.GetComponent<HitEffect>().hitbloodEffect();
             other.GetComponent<Enemy>().Enemy_HP -= _Dmg;
             Destroy(this.gameObject);
         }

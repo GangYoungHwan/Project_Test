@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     Movement _movement = null;
     Attack _attack = null;
     GameObject _target;
+
+    
     void Start()
     {
         instance = this;
