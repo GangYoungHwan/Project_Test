@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4abd33e671486e418f8e6d10c342fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.3
+  _speed: 0.5
   _critical: {fileID: 2867061152304700262}
 --- !u!114 &6157809238806923018
 MonoBehaviour:
@@ -123,6 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8490dd27f8f72774998a3c47b66365f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageText: {fileID: 6615134256630742560, guid: 4f7ab698acc77d7479420b51b6132dae,
+    type: 3}
 --- !u!1 &8326523555316591005
 GameObject:
   m_ObjectHideFlags: 0

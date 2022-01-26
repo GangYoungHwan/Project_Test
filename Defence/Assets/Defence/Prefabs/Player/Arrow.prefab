@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d019c9b08cbebc4b8849ff4dac0debd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.3
+  _speed: 0.5
   _critical: {fileID: 2970079121784653721}
 --- !u!65 &5434079179697448299
 BoxCollider:
@@ -75,6 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb305a08bbcf7844389c3cbc8f7362eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageText: {fileID: 6615134256630742560, guid: 4f7ab698acc77d7479420b51b6132dae,
+    type: 3}
+  _damagePos: {fileID: 0}
 --- !u!1 &5192296400826273790
 GameObject:
   m_ObjectHideFlags: 0
