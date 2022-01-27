@@ -20,15 +20,19 @@ public class ArrowHit : MonoBehaviour
         {
             other.GetComponent<HitEffect>().hitbloodEffect();
             other.GetComponent<Enemy>().Enemy_HP -= _Dmg;
-            TakeDamage(_Dmg,other.transform.FindChild("DmgPos"));
+            TakeDamage(_Dmg, other.transform.Find("DmgPos"));
             Destroy(this.gameObject);
         }
     }
 
-    public void TakeDamage(float damage,Transform pos)
+    public void TakeDamage(float damage, Transform pos)
     {
         GameObject hudText = Instantiate(_damageText);
-        hudText.transform.position = pos.position;
-        hudText.GetComponent<DmgText>().damage = damage;
+
+        Vector3 _pos = pos.position;
+        _pos.y = 1;
+        hudText.transform.position = _pos;
+
+        hudText.GetComponentInChildren<DmgText>().damage = damage;
     }
 }

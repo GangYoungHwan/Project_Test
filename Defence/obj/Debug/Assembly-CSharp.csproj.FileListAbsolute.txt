@@ -270,3 +270,4 @@ C:\Users\SGA\Documents\GitHub\Project_Test\Defence\obj\Debug\Assembly-CSharp.csp
 C:\Users\SGA\Documents\GitHub\Project_Test\Defence\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\SGA\Documents\GitHub\Project_Test\Defence\obj\Debug\Assembly-CSharp.dll
 C:\Users\SGA\Documents\GitHub\Project_Test\Defence\obj\Debug\Assembly-CSharp.pdb
+C:\Users\SGA\Documents\GitHub\Project_Test\Defence\Temp\bin\Debug\nunit.framework.dll

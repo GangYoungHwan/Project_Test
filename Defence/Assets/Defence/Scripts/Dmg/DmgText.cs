@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class DmgText : MonoBehaviour
@@ -8,17 +9,18 @@ public class DmgText : MonoBehaviour
     private float _moveSpeed;
     private float _alphaSpeed;
     private float _destroyTime;
-    TextMeshPro text;
+    //TextMeshPro text;
+    Text text;
     Color _alpha;
     public float damage;
     
     void Start()
     {
-        _moveSpeed = 2.0f;
-        _alphaSpeed = 2.0f;
-        _destroyTime = 2.0f;
+        _moveSpeed = 0.1f;
+        _alphaSpeed = 0.05f;
+        _destroyTime = 1.0f;
 
-        text = GetComponent<TextMeshPro>();
+        text = GetComponent<Text>();
         _alpha = text.color;
         text.text = damage.ToString();
         Invoke("DestroyObject", _destroyTime);
@@ -27,13 +29,14 @@ public class DmgText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector3(0, _moveSpeed * Time.deltaTime, 0));
-        _alpha.a = Mathf.Lerp(_alpha.a, 0, Time.deltaTime * _alphaSpeed);
+        transform.Translate(new Vector3(0, _moveSpeed, 0));
+        //transform.position += new Vector3(0, _moveSpeed * Time.deltaTime, 0);
+        _alpha.a = Mathf.Lerp(_alpha.a, 0, _alphaSpeed);
         text.color = _alpha;
     }
 
     private void DestroyObject()
     {
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }
