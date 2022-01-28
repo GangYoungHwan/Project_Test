@@ -10,7 +10,7 @@ public class DaggerHit : MonoBehaviour
     {
         //GameObject obj = GameObject.FindWithTag("Ninja");
         //_Dmg = obj.GetComponent<Player>().Damage;
-        _Dmg = Player.instance.NinjaDamage;
+        _Dmg = Random.Range((int)Player.instance.NinjaDamage/2, (int)Player.instance.NinjaDamage);
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -12,7 +12,7 @@ public class ArrowHit : MonoBehaviour
     {
         //GameObject obj = GameObject.FindWithTag("Archer");
         //_Dmg = obj.GetComponent<Player>().Damage;
-        _Dmg = Player.instance.ArcherDamage;
+        _Dmg = Random.Range((int)Player.instance.ArcherDamage/2, (int)Player.instance.ArcherDamage);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -32,7 +32,20 @@ public class ArrowHit : MonoBehaviour
         Vector3 _pos = pos.position;
         _pos.y = 1;
         hudText.transform.position = _pos;
+        if (Player.instance != null)
+        {
+            int _rand = Random.Range(0, 100);
+            int _critical = Player.instance.ArcherCritical;
 
-        hudText.GetComponentInChildren<DmgText>().damage = damage;
+            if (_rand < _critical)
+            {
+                hudText.transform.GetChild(0).GetComponent<CriticalHit>().CriticalHiting();
+                hudText.GetComponent<DmgText>().damage = damage * Player.instance.ArcherCriticalDmg;
+            }
+            else
+            {
+                hudText.GetComponent<DmgText>().damage = damage;
+            }
+        }
     }
 }

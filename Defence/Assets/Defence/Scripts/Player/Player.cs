@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
     public int NinjaCritical = 0;
     public int WizardCritical = 0;
 
+    public bool ArcherCriticalOn = false;
+    public bool NinjaCriticalOn = false;
+    public bool WizardCriticalOn = false;
+
     //크리티컬 데미지
     public float ArcherCriticalDmg = 35;
     public float NinjaCriticalDmg = 35;
@@ -107,7 +111,9 @@ public class Player : MonoBehaviour
         {
             arrow.GetComponent<Arrow>()._critical.Play();
             Debug.Log("크리티컬");
+            ArcherCriticalOn = true;
         }
+        else ArcherCriticalOn = false;
         _lastAttack = 0.0f;
     }
 
@@ -221,17 +227,17 @@ public class Player : MonoBehaviour
     {
         if (CardUI.instance != null)
         {
-            if (ArcherRand < ArcherCritical)//크리티컬
-            {
-                ArcherDamage = (10 + CardUI.instance._buffArcherAtt)* ArcherCriticalDmg;
-                //Debug.Log("아쳐 크리티컬");
-            }
-            else
-            {
-                ArcherDamage = 10 + CardUI.instance._buffArcherAtt;
-            }
+            //if (ArcherRand < ArcherCritical)//크리티컬
+            //{
+            //    ArcherDamage = (10 + CardUI.instance._buffArcherAtt)* ArcherCriticalDmg;
+            //    //Debug.Log("아쳐 크리티컬");
+            //}
+            //else
+            //{
+            //    ArcherDamage = 10 + CardUI.instance._buffArcherAtt;
+            //}
             AttackSpeed = CardUI.instance._buffAttSpeed;
-            //ArcherDamage = 10 + CardUI.instance._buffArcherAtt;
+            ArcherDamage = 10 + CardUI.instance._buffArcherAtt;
             NinjaDamage = 10 + CardUI.instance._buffNinjaAtt;
             WizardDamage = 20 + CardUI.instance._buffWizardAtt;
 

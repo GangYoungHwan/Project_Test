@@ -66,6 +66,7 @@
     <Compile Include="Assets\Defence\Prefabs\Maps\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
     <Compile Include="Assets\Defence\Prefabs\Maps\AurynSky\Dungeon Pack\Scripts\TrapDoorDemo.cs" />
     <Compile Include="Assets\Defence\Scripts\Billboard.cs" />
+    <Compile Include="Assets\Defence\Scripts\Dmg\CriticalHit.cs" />
     <Compile Include="Assets\Defence\Scripts\Dmg\DmgText.cs" />
     <Compile Include="Assets\Defence\Scripts\Enemy\Attack.cs" />
     <Compile Include="Assets\Defence\Scripts\Enemy\Enemy.cs" />

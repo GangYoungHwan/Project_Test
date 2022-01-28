@@ -10,7 +10,7 @@ public class FireMagicHit : MonoBehaviour
     {
         //GameObject obj = GameObject.FindWithTag("Wizard");
         //_Dmg = obj.GetComponent<Player>().Damage;
-        _Dmg = Player.instance.WizardDamage;
+        _Dmg = Random.Range((int)Player.instance.WizardDamage/2, (int)Player.instance.WizardDamage);
     }
     private void OnTriggerEnter(Collider other)
     {

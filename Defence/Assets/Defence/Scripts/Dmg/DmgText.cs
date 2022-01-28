@@ -9,8 +9,8 @@ public class DmgText : MonoBehaviour
     private float _moveSpeed;
     private float _alphaSpeed;
     private float _destroyTime;
-    //TextMeshPro text;
-    Text text;
+    TextMeshPro text;
+    //Text text;
     Color _alpha;
     public float damage;
     
@@ -20,7 +20,8 @@ public class DmgText : MonoBehaviour
         _alphaSpeed = 0.05f;
         _destroyTime = 1.0f;
 
-        text = GetComponent<Text>();
+        //text = GetComponent<Text>();
+        text = GetComponent<TextMeshPro>();
         _alpha = text.color;
         text.text = damage.ToString();
         Invoke("DestroyObject", _destroyTime);
@@ -37,6 +38,7 @@ public class DmgText : MonoBehaviour
 
     private void DestroyObject()
     {
-        Destroy(transform.parent.gameObject);
+        //Destroy(transform.parent.gameObject);
+        Destroy(this.gameObject);
     }
 }
