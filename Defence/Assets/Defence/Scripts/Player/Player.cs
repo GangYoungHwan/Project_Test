@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     float _attackSpeed = 1.0f;
 
     public GameObject _waepon;
+    public GameObject _waepon2;
     public Transform _firePosition;
     List<GameObject> _arr;
     bool moving;
@@ -101,34 +102,44 @@ public class Player : MonoBehaviour
     void ArrowAttack()
     {
         _animator.SetFloat("MoveSpeed", 0);
-        
+        int ArrowDamage = Random.Range((int)ArcherDamage / 2, (int)ArcherDamage);
         GameObject arrow = Instantiate(_waepon);
-        _arr.Add(arrow);
         arrow.transform.position = _firePosition.position;
         arrow.GetComponent<Arrow>().TargetFind(_target.transform);
         ArcherRand = Random.Range(0, 100);
         if (ArcherRand < ArcherCritical)//크리티컬
         {
             arrow.GetComponent<Arrow>()._critical.Play();
+            arrow.GetComponent<Arrow>()._Dmg = ArrowDamage * (int)ArcherCriticalDmg;
+            arrow.GetComponent<Arrow>().Critical = true;
             Debug.Log("크리티컬");
-            ArcherCriticalOn = true;
+            //ArcherCriticalOn = true;
         }
-        else ArcherCriticalOn = false;
+        else
+        {
+            arrow.GetComponent<Arrow>()._Dmg = ArrowDamage ;
+            //ArcherCriticalOn = false;
+        }
         _lastAttack = 0.0f;
     }
 
     void DaggerAttack()
     {
         _animator.SetFloat("MoveSpeed", 0);
+        int DaggerDamage = Random.Range((int)NinjaDamage / 2, (int)NinjaDamage);
         GameObject Dagger = Instantiate(_waepon);
-        _arr.Add(Dagger);
         Dagger.transform.position = _firePosition.position;
         Dagger.GetComponent<Dagger>().TargetFind(_target.transform);
         NinjaRand = Random.Range(0, 100);
         if (NinjaRand < NinjaCritical)//크리티컬
         {
             Dagger.GetComponent<Dagger>()._critical.Play();
-            Debug.Log("크리티컬");
+            Dagger.GetComponent<Dagger>()._Dmg = DaggerDamage * (int)ArcherCriticalDmg;
+            Dagger.GetComponent<Dagger>().Critical = true;
+        }
+        else
+        {
+            Dagger.GetComponent<Dagger>()._Dmg = DaggerDamage;
         }
         _lastAttack = 0.0f;
     }
@@ -136,15 +147,26 @@ public class Player : MonoBehaviour
     void FireMagicAttack()
     {
         _animator.SetFloat("MoveSpeed", 0);
-        GameObject FireMagic = Instantiate(_waepon);
-        _arr.Add(FireMagic);
-        FireMagic.transform.position = _firePosition.position;
-        FireMagic.GetComponent<FireMagic>().TargetFind(_target.transform);
+        int FireDamage = Random.Range((int)WizardDamage / 2, (int)WizardDamage);
+        //GameObject FireMagic = Instantiate(_waepon);
+        //FireMagic.transform.position = _firePosition.position;
+        //FireMagic.GetComponent<FireMagic>().TargetFind(_target.transform);
         WizardRand = Random.Range(0, 100);
         if (WizardRand < WizardCritical)//크리티컬
         {
-            FireMagic.GetComponent<FireMagic>()._critical.Play();
-            Debug.Log("크리티컬");
+            GameObject FireMagic1 = Instantiate(_waepon2);
+            FireMagic1.transform.position = _firePosition.position;
+            FireMagic1.GetComponent<FireMagic>().TargetFind(_target.transform);
+            FireMagic1.GetComponent<FireMagic>()._critical.Play();
+            FireMagic1.GetComponent<FireMagic>()._Dmg = FireDamage * (int)ArcherCriticalDmg;
+            FireMagic1.GetComponent<FireMagic>().Critical = true;
+        }
+        else
+        {
+            GameObject FireMagic = Instantiate(_waepon);
+            FireMagic.transform.position = _firePosition.position;
+            FireMagic.GetComponent<FireMagic>().TargetFind(_target.transform);
+            FireMagic.GetComponent<FireMagic>()._Dmg = FireDamage;
         }
         _lastAttack = 0.0f;
     }

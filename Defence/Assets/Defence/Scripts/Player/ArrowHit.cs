@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArrowHit : MonoBehaviour
 {
-    float _Dmg;
+    public float _Dmg;
 
     public GameObject _damageText;
     public Transform _damagePos;

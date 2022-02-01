@@ -17,10 +17,8 @@ public class DmgText : MonoBehaviour
     void Start()
     {
         _moveSpeed = 0.1f;
-        _alphaSpeed = 0.05f;
-        _destroyTime = 1.0f;
-
-        //text = GetComponent<Text>();
+        _alphaSpeed = 0.03f;
+        _destroyTime = 0.5f;
         text = GetComponent<TextMeshPro>();
         _alpha = text.color;
         text.text = damage.ToString();
@@ -31,14 +29,12 @@ public class DmgText : MonoBehaviour
     void Update()
     {
         transform.Translate(new Vector3(0, _moveSpeed, 0));
-        //transform.position += new Vector3(0, _moveSpeed * Time.deltaTime, 0);
         _alpha.a = Mathf.Lerp(_alpha.a, 0, _alphaSpeed);
         text.color = _alpha;
     }
 
     private void DestroyObject()
     {
-        //Destroy(transform.parent.gameObject);
         Destroy(this.gameObject);
     }
 }

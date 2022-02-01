@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8046170724132520572}
   - component: {fileID: 6827842141736213941}
   - component: {fileID: 5834345167750904258}
-  - component: {fileID: 6157809238806923018}
   m_Layer: 0
   m_Name: Dagger
   m_TagString: Untagged
@@ -111,19 +110,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0.5
   _critical: {fileID: 2867061152304700262}
---- !u!114 &6157809238806923018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4385061518857698565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8490dd27f8f72774998a3c47b66365f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _Dmg: 0
+  Critical: 0
   _damageText: {fileID: 7984175737697686396, guid: 1ba16488e6942cb448e6601ae9169889,
+    type: 3}
+  _criticalDamageText: {fileID: 6190989631000677014, guid: e1f44e205078b8d4aab71fed3b8195d5,
     type: 3}
 --- !u!1 &8326523555316591005
 GameObject:

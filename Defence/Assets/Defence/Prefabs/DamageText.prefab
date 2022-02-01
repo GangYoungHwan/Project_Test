@@ -264,9 +264,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -110503229
+  m_SortingLayer: 1
+  m_SortingOrder: 1
 --- !u!222 &7984175737697686394
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -363,8 +363,8 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 7984175737697686393}
   m_maskType: 0
-  _SortingLayerID: 0
-  _SortingOrder: 0
+  _SortingLayerID: -110503229
+  _SortingOrder: 1
 --- !u!114 &898409111684153297
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ TagManager:
   - 
   - 
   - Unit
-  - 
+  - Damage
   - 
   - 
   - 
@@ -48,4 +48,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: DamageNormal
+    uniqueID: 4184464067
     locked: 0
