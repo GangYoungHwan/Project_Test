@@ -84,6 +84,7 @@
      <Compile Include="Assets\Defence\Scripts\UI\CardUI.cs" />
      <Compile Include="Assets\Defence\Scripts\UI\GoldUI.cs" />
      <Compile Include="Assets\Defence\Scripts\UI\SelectCharacter.cs" />
+     <Compile Include="Assets\Defence\Scripts\UI\Volume.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_New.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs" />

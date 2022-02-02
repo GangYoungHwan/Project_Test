@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Toby Fredson/Dwarven Expedition Pack - Stylized Assets/Scenes/DEP_ST_Secene_Examples.unity
+- path: Assets/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
