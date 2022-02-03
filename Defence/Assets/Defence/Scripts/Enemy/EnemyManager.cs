@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
     public GameObject _EnemyNormal;
+    public GameObject _EnemyBoss;
 
     public bool GameOver = false;
     public float _createTime = 3.0f;
@@ -34,7 +35,7 @@ public class EnemyManager : MonoBehaviour
         while(!GameOver)
         {
             int CreateEnemyCount = (int)GameObject.FindGameObjectsWithTag("Enemy").Length;
-            if (CreateEnemyCount > 100) GameOver = true;
+            if (CreateEnemyCount > 100) GameOver = true; //100마리되면 게임끝
 
             if (EnemyCount< _maxEnemy)
             {
@@ -50,6 +51,13 @@ public class EnemyManager : MonoBehaviour
                 EnemyCount = 0;
             }
 
+            //if(_round == 2)
+            //{
+            //    yield return new WaitForSeconds(_createTime);
+            //    Instantiate(_EnemyBoss, this.transform.position, this.transform.rotation);
+            //    _EnemyBoss.GetComponent<NavMeshAgent>().enabled = true;
+            //    yield return new WaitForSeconds(_reSpwanTime*2);
+            //}
         }
     }
 }

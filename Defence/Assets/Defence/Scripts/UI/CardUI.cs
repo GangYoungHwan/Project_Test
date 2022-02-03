@@ -42,6 +42,13 @@ public class CardUI : MonoBehaviour
     public float _buffArcherCriticalDmg = 0.0f;
     public float _buffNinjaCriticalDmg = 0.0f;
     public float _buffWizardCriticalDmg = 0.0f;
+
+    //set
+    public GameObject _setUI;
+    bool _setUiOn = false;
+
+    public GameObject _questUI;
+    bool _questUiOn = false;
     void Start()
     {
         instance = this;
@@ -50,6 +57,7 @@ public class CardUI : MonoBehaviour
         _skillStack = new List<int>();
         _unitOpenUI.SetActive(false);
         _buffOpenUI.SetActive(false);
+        _setUI.SetActive(false);
         for (int i=0; i<10;i++)
         {
             _skillStack.Add(1);
@@ -62,12 +70,13 @@ public class CardUI : MonoBehaviour
     }
     public void Card()
     {
+        _questUI.SetActive(false);
         if (_cardOn)
         {
+            this.gameObject.SetActive(false);
             unitoff();
             _unitOpenUI.SetActive(false);
             _buffOpenUI.SetActive(false);
-            this.gameObject.SetActive(false);
             _camerapos.transform.position = new Vector3(36, 35, 4);
             _cardOn = false;
         }
@@ -231,5 +240,42 @@ public class CardUI : MonoBehaviour
         _image.enabled = false;
         _name.enabled = false;
         _text.enabled = false;
+    }
+
+    public void SetOnOff()
+    {
+        if (_setUiOn)
+        {
+            _setUI.SetActive(true);
+            _setUiOn = false;
+        }
+        else
+        {
+            _setUI.SetActive(false);
+            _setUiOn = true;
+        }
+    }
+
+    public void close()
+    {
+        _setUI.SetActive(false);
+    }
+
+    public void QuestUI()
+    {
+        this.gameObject.SetActive(false);
+        if (_questUiOn)
+        {
+            _questUI.SetActive(true);
+            _camerapos.transform.position = new Vector3(44, 35, 12);
+            _questUiOn = false;
+        }
+        else
+        {
+            _questUI.SetActive(false);
+            
+            _camerapos.transform.position = new Vector3(36, 35, 4);
+            _questUiOn = true;
+        }
     }
 }
