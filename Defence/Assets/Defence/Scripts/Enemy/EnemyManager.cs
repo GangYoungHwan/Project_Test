@@ -37,6 +37,15 @@ public class EnemyManager : MonoBehaviour
             int CreateEnemyCount = (int)GameObject.FindGameObjectsWithTag("Enemy").Length;
             if (CreateEnemyCount > 100) GameOver = true; //100마리되면 게임끝
 
+            if (_round %10== 0) //10라운드마다 보스출현
+            {
+                yield return new WaitForSeconds(_createTime);
+                Instantiate(_EnemyBoss, this.transform.position, this.transform.rotation);
+                _EnemyBoss.GetComponent<NavMeshAgent>().enabled = true;
+                yield return new WaitForSeconds((_reSpwanTime * 2)-_createTime);
+                _round++;
+            }
+
             if (EnemyCount< _maxEnemy)
             {
                 yield return new WaitForSeconds(_createTime);
@@ -50,14 +59,6 @@ public class EnemyManager : MonoBehaviour
                 _round++;
                 EnemyCount = 0;
             }
-
-            //if(_round == 2)
-            //{
-            //    yield return new WaitForSeconds(_createTime);
-            //    Instantiate(_EnemyBoss, this.transform.position, this.transform.rotation);
-            //    _EnemyBoss.GetComponent<NavMeshAgent>().enabled = true;
-            //    yield return new WaitForSeconds(_reSpwanTime*2);
-            //}
         }
     }
 }

@@ -103,7 +103,7 @@ NavMeshAgent:
   m_Height: 3.2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!95 &8907141808110087078
 Animator:
   serializedVersion: 3
@@ -158,10 +158,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.7
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &4994174329852901546
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -193,6 +193,7 @@ MonoBehaviour:
   Enemy_HP: 1000
   Enemy_att: 0
   _hpbar: {fileID: 2612931442488007827}
+  EnemyNum: 1
 --- !u!114 &3238375350006000184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,12 +238,12 @@ PrefabInstance:
     - target: {fileID: 6131830650621278110, guid: f72405ed1fbe2ef448328afa27210122,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.203
+      value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 6131830650621278110, guid: f72405ed1fbe2ef448328afa27210122,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.503
+      value: 0.47
       objectReference: {fileID: 0}
     - target: {fileID: 6131830650621278110, guid: f72405ed1fbe2ef448328afa27210122,
         type: 3}

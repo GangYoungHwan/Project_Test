@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
         int ArrowDamage = Random.Range((int)ArcherDamage / 2, (int)ArcherDamage);
         GameObject arrow = Instantiate(_waepon);
         arrow.transform.position = _firePosition.position;
-        arrow.GetComponent<Arrow>().TargetFind(_target.transform);
+        if (_target != null) arrow.GetComponent<Arrow>().TargetFind(_target.transform);
         ArcherRand = Random.Range(0, 100);
         if (ArcherRand < ArcherCritical)//크리티컬
         {
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
         int DaggerDamage = Random.Range((int)NinjaDamage / 2, (int)NinjaDamage);
         GameObject Dagger = Instantiate(_waepon);
         Dagger.transform.position = _firePosition.position;
-        Dagger.GetComponent<Dagger>().TargetFind(_target.transform);
+        if (_target != null) Dagger.GetComponent<Dagger>().TargetFind(_target.transform);
         NinjaRand = Random.Range(0, 100);
         if (NinjaRand < NinjaCritical)//크리티컬
         {
@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
         {
             GameObject FireMagic1 = Instantiate(_waepon2);
             FireMagic1.transform.position = _firePosition.position;
-            FireMagic1.GetComponent<FireMagic>().TargetFind(_target.transform);
+            if (_target != null) FireMagic1.GetComponent<FireMagic>().TargetFind(_target.transform);
             FireMagic1.GetComponent<FireMagic>()._critical.Play();
             FireMagic1.GetComponent<FireMagic>()._Dmg = FireDamage * (int)ArcherCriticalDmg;
             FireMagic1.GetComponent<FireMagic>().Critical = true;
@@ -165,8 +165,12 @@ public class Player : MonoBehaviour
         {
             GameObject FireMagic = Instantiate(_waepon);
             FireMagic.transform.position = _firePosition.position;
-            FireMagic.GetComponent<FireMagic>().TargetFind(_target.transform);
             FireMagic.GetComponent<FireMagic>()._Dmg = FireDamage;
+            if (_target != null)
+            {
+                FireMagic.GetComponent<FireMagic>().TargetFind(_target.transform);
+            }
+                FireMagic.GetComponent<FireMagic>()._Dmg = FireDamage;
         }
         _lastAttack = 0.0f;
     }

@@ -14,11 +14,13 @@ public class Enemy : MonoBehaviour
     Attack _attack = null;
     GameObject _target;
 
+    public int EnemyNum;
     
     void Start()
     {
         instance = this;
-        Enemy_HP = 200.0f+(info.instance._round*50.0f);
+        if(EnemyNum == 1) Enemy_HP = 1000.0f + (info.instance._round * 100.0f);
+        else Enemy_HP = 200.0f+(info.instance._round*50.0f);
         Enemy_att = Random.Range(10 * EnemyManager.instance._round, 20 * EnemyManager.instance._round);
         _hpbar = this.transform.GetChild(1).transform.GetChild(0).GetComponent<Slider>();
         _hpbar.maxValue = Enemy_HP;
@@ -39,12 +41,19 @@ public class Enemy : MonoBehaviour
 
         if (_attack.IsinRange(_target)== false)
         {
-            _movement.Moving();
+            if (EnemyNum == 1) Invoke("EnemyBossRoaring", 5.0f);
+            else if(EnemyNum == 0)_movement.Moving();
+            //_movement.Moving();
         }
         else
         {
             _movement.MovingEnd();
             _attack.Attacking(_target);
         }
+    }
+
+    private void EnemyBossRoaring()
+    {
+        _movement.Moving();
     }
 }

@@ -83,6 +83,7 @@
     <Compile Include="Assets\Defence\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Defence\Scripts\Player\Spwan.cs" />
     <Compile Include="Assets\Defence\Scripts\Player\info.cs" />
+    <Compile Include="Assets\Defence\Scripts\Quest\Quest.cs" />
     <Compile Include="Assets\Defence\Scripts\RTS\RTS Selector\Example Scene\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Defence\Scripts\RTS\SelectManager.cs" />
     <Compile Include="Assets\Defence\Scripts\RTS\SelectableCharacter.cs" />

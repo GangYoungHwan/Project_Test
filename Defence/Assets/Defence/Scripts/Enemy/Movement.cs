@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
         _agent = this.GetComponent<NavMeshAgent>();
         _animator = this.GetComponentInChildren<Animator>();
         _target = GameObject.Find("Way1End");
-        if (_target != null) _agent.SetDestination(_target.transform.position);
+        //if (_target != null) _agent.SetDestination(_target.transform.position);
         _animator.SetFloat("MoveSpeed", 1.0f);
     }
 

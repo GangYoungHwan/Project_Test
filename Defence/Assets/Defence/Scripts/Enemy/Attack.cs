@@ -25,17 +25,24 @@ public class Attack : MonoBehaviour
     {
         this.transform.LookAt(target.transform);
 
-        if (_lastAttack < _attackDelay)
+        //if (_lastAttack < _attackDelay)
+        //{
+        //    _animator.ResetTrigger("Attack");
+        //    _animator.SetTrigger("StopAttack");
+        //}
+        //else
+        //{
+        //    _animator.ResetTrigger("StopAttack");
+        //    _animator.SetTrigger("Attack");
+        //    Damage(Enemy.instance.Enemy_att);
+        //    _lastAttack = 0.0f;
+        //}
+        if(_lastAttack > _attackDelay)
         {
-            _animator.ResetTrigger("Attack");
-            _animator.SetTrigger("StopAttack");
-        }
-        else
-        {
-            _animator.ResetTrigger("StopAttack");
             _animator.SetTrigger("Attack");
+            _animator.SetTrigger("StopAttack");
             Damage(Enemy.instance.Enemy_att);
-            _lastAttack = 0.0f;
+            _lastAttack = 0;
         }
     }
 

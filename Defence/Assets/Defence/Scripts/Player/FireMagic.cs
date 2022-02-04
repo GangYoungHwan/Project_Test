@@ -46,7 +46,7 @@ public class FireMagic : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.GetComponent<HitEffect>().hitbloodEffect();
+            other.GetComponent<HitEffect>().hitFireEffect();
             other.GetComponent<Enemy>().Enemy_HP -= _Dmg;
             TakeDamage(_Dmg, other.transform.Find("DmgPos"));
             Destroy(this.gameObject);
