@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(RectTransform))]
+//[RequireComponent(typeof(RectTransform))]
 public class SelectManager : MonoBehaviour
 {
     public static SelectManager Instance;
@@ -11,20 +12,23 @@ public class SelectManager : MonoBehaviour
     public Camera selectCam;
     public RectTransform SelectingBoxRect;
 
-    private Rect SelectingRect;
-    private Vector3 SelectingStart;
+    public Rect SelectingRect;
+    public Vector3 SelectingStart;
 
 
     public float minBoxSizeBeforeSelect = 10f;
     public float selectUnderMouseTimer = 0.1f;
-    private float selectTimer = 0f;
+    public float selectTimer = 0f;
 
     public bool selecting = false;
 
     public List<SelectableCharacter> selectableChars = new List<SelectableCharacter>();
-    private List<SelectableCharacter> selectedArmy = new List<SelectableCharacter>();
+    public List<SelectableCharacter> selectedArmy = new List<SelectableCharacter>();
 
-    
+    public float m_DoubleClickSecond = 0.25f;
+    public bool m_IsOneClick = false;
+    public double m_Timer = 0;
+
     public void Start()
     {
         Instance = this;
@@ -47,43 +51,106 @@ public class SelectManager : MonoBehaviour
     void Update()
     {
         if (SelectingBoxRect == null) return;
-    
 
+        if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond))
+        {
+            Debug.Log("One Click");
+            m_IsOneClick = false;
+        }
         if (Input.GetMouseButtonDown(0))
         {
-            ReSelect();
-            SelectingStart = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-            SelectingBoxRect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            SelectableCharacter[] chars = FindObjectsOfType<SelectableCharacter>();
-            for (int i = 0; i <= (chars.Length - 1); i++)
+            if (!EventSystem.current.IsPointerOverGameObject()) ReSelect2();
+            if (!m_IsOneClick)//원클릭
             {
-                selectableChars.Add(chars[i]);
+                SelectingStart = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+                SelectingBoxRect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                SelectableCharacter[] chars = FindObjectsOfType<SelectableCharacter>();
+                for (int i = 0; i <= (chars.Length - 1); i++)
+                {
+                    selectableChars.Add(chars[i]);
+                }
+                m_Timer = Time.time;
+                m_IsOneClick = true;
+            }
+            else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+            {
+                DoubleClick();
+                Debug.Log("Double Click");
+                m_IsOneClick = false;
             }
         }
-        else if (Input.GetMouseButtonUp(0))
-        {
+        else if (Input.GetMouseButtonUp(0)) selectTimer = 0f;
 
-            selectTimer = 0f;
-        }
-
+        else selecting = false;
         selecting = Input.GetMouseButton(0);
-
         if (selecting)
         {
             SelectingArmy();
             selectTimer += Time.deltaTime;
-
+        
             //Only check if there is a character under the mouse for a fixed time
             if (selectTimer <= selectUnderMouseTimer) {
                 CheckIfUnderMouse();
             }
         }
         else SelectingBoxRect.sizeDelta = new Vector2(0, 0);
-
         if (Moving() == true) return;
+        /*
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //ReSelect();
+        //SelectingStart = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        //SelectingBoxRect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        //SelectableCharacter[] chars = FindObjectsOfType<SelectableCharacter>();
+        //for (int i = 0; i <= (chars.Length - 1); i++)
+        //{
+        //    selectableChars.Add(chars[i]);
+        //}
 
 
+        //if (!m_IsOneClick)
+        //{
+        //    //ReSelect();
+        //    //ReSelect2();
+        //    SelectingStart = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        //    SelectingBoxRect.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        //    SelectableCharacter[] chars = FindObjectsOfType<SelectableCharacter>();
+        //    for (int i = 0; i <= (chars.Length - 1); i++)
+        //    {
+        //        selectableChars.Add(chars[i]);
+        //    }
+        //    m_Timer = Time.time;
+        //    m_IsOneClick = true;
+        //}
+        //else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+        //{
+        //    DoubleClick();
+        //    Debug.Log("Double Click");
+        //    m_IsOneClick = false;
+        //
+        //}
 
+        //}
+        //else if (Input.GetMouseButtonUp(0))
+        //{
+        //    selectTimer = 0f;
+        //}
+
+        //selecting = Input.GetMouseButton(0);
+        //
+        //if (selecting)
+        //{
+        //    SelectingArmy();
+        //    selectTimer += Time.deltaTime;
+        //
+        //    //Only check if there is a character under the mouse for a fixed time
+        //    if (selectTimer <= selectUnderMouseTimer) {
+        //        CheckIfUnderMouse();
+        //    }
+        //}
+        //else SelectingBoxRect.sizeDelta = new Vector2(0, 0);
+        //if (Moving() == true) return;
+        */
     }
 
     //Resets what is currently being selected
@@ -93,6 +160,14 @@ public class SelectManager : MonoBehaviour
         {
             selectedArmy[i].TurnOffSelector();
             selectedArmy.Remove(selectedArmy[i]);
+        }
+    }
+
+    void ReSelect2()
+    {
+        foreach (SelectableCharacter soldier in selectableChars)
+        {
+            soldier.TurnOffSelector();
         }
     }
 
@@ -155,21 +230,24 @@ public class SelectManager : MonoBehaviour
     {
         foreach (SelectableCharacter soldier in selectableChars)
         {
-            Vector2 screenPos = selectCam.WorldToScreenPoint(soldier.transform.position);
-            if (SelectingRect.Contains(screenPos))
+            if (soldier != null)
             {
-                if (!selectedArmy.Contains(soldier))
-                    selectedArmy.Add(soldier);
+                Vector2 screenPos = selectCam.WorldToScreenPoint(soldier.transform.position);
+                if (SelectingRect.Contains(screenPos))
+                {
+                    if (!selectedArmy.Contains(soldier))
+                        selectedArmy.Add(soldier);
 
-                soldier.TurnOnSelector();
+                    soldier.TurnOnSelector();
 
-            }
-            else if (!SelectingRect.Contains(screenPos))
-            {
-                soldier.TurnOffSelector();
+                }
+                else if (!SelectingRect.Contains(screenPos))
+                {
+                    soldier.TurnOffSelector();
 
-                if (selectedArmy.Contains(soldier))
-                    selectedArmy.Remove(soldier);
+                    if (selectedArmy.Contains(soldier))
+                        selectedArmy.Remove(soldier);
+                }
             }
         }
     }
@@ -195,18 +273,21 @@ public class SelectManager : MonoBehaviour
     public bool Moving()
     {
         RaycastHit hit;
+        GameObject _target = null;
         if (Physics.Raycast(GetMouseRay(), out hit, 100.0f))
         {
             if (Input.GetMouseButtonDown(1))
             {
                 foreach (SelectableCharacter soldier in selectableChars)
                 {
-                    
-                    if (soldier.selectImage.enabled)
+                    if (soldier != null)
                     {
-                        _agent = soldier.GetComponentInParent<NavMeshAgent>();
-                        _agent.isStopped = false;
-                        _agent.destination = hit.point;
+                        if (soldier.selectImage.enabled)
+                        {
+                            _agent = soldier.GetComponentInParent<NavMeshAgent>();
+                            _agent.isStopped = false;
+                            _agent.destination = hit.point;
+                        }
                     }
                 }
             }
@@ -214,7 +295,33 @@ public class SelectManager : MonoBehaviour
         }
         return false;
     }
-
+    public bool DoubleClick()
+    {
+        RaycastHit hit;
+        GameObject _target = null;
+        
+        if (Physics.Raycast(GetMouseRay(), out hit, 100.0f))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                //_target = hit.collider.gameObject.transform.GetChild(0).gameObject;
+                _target = hit.collider.transform.GetChild(0).gameObject;
+                Debug.Log(_target.tag);
+                foreach (SelectableCharacter soldier in selectableChars)
+                {
+                    if (soldier != null)
+                    {
+                        if (_target.tag == soldier.tag)
+                        {
+                            soldier.TurnOnSelector();
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
     private Ray GetMouseRay()
     {
         return Camera.main.ScreenPointToRay(Input.mousePosition);

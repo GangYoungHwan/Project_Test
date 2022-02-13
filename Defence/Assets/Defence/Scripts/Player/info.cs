@@ -43,7 +43,7 @@ public class info : MonoBehaviour
         _time = 0.0f;
         _att = 20;
         _attspeed = 1;
-        _gold = 0;
+        _gold = 100;
         _dia = 0;
     }
 

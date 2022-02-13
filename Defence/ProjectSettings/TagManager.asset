@@ -12,6 +12,10 @@ TagManager:
   - Dia
   - Exp
   - Gold
+  - UI
+  - PArcher
+  - PWizard
+  - PNinja
   layers:
   - Default
   - TransparentFX

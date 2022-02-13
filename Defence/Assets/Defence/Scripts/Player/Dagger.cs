@@ -23,6 +23,7 @@ public class Dagger : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if (_target.GetComponent<Enemy>()._die) Destroy(this.gameObject);
     }
 
     public bool TargetFind(Transform Target)

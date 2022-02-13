@@ -15,11 +15,12 @@ public class Enemy : MonoBehaviour
     GameObject _target;
 
     public int EnemyNum;
-    
+    public bool _die;
     void Start()
     {
         instance = this;
-        if(EnemyNum == 1) Enemy_HP = 1000.0f + (info.instance._round * 100.0f);
+        _die = false;
+        if (EnemyNum == 1) Enemy_HP = 1000.0f + (info.instance._round * 100.0f);
         else Enemy_HP = 200.0f+(info.instance._round*50.0f);
         Enemy_att = Random.Range(10 * EnemyManager.instance._round, 20 * EnemyManager.instance._round);
         _hpbar = this.transform.GetChild(1).transform.GetChild(0).GetComponent<Slider>();
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
         if (Enemy_HP <= 0)
         {
             info.instance.Gold(10);
+            _die = true;
             Destroy(this.gameObject);
         }
 

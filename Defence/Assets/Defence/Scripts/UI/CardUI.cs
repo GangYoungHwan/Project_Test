@@ -92,26 +92,34 @@ public class CardUI : MonoBehaviour
     }
     public void UnitCardSpwan()
     {
-        unitoff();
-        int rand = Random.Range(0, 3);
-        switch (rand)
+        if (info.instance._gold >= 30)
         {
-            case 0:
-                _name.text = "";
-                _text.text = "아쳐\n\n소환 성공!!";
-                break;
-            case 1:
-                _name.text = "";
-                _text.text = "닌자\n\n소환 성공!!";
-                break;
-            case 2:
-                _name.text = "";
-                _text.text = "위자드\n\n소환 성공!!";
-                break;
+            unitoff();
+            info.instance._gold -= 30;
+            int rand = Random.Range(0, 3);
+            switch (rand)
+            {
+                case 0:
+                    _name.text = "";
+                    _text.text = "아쳐\n\n소환 성공!!";
+                    break;
+                case 1:
+                    _name.text = "";
+                    _text.text = "닌자\n\n소환 성공!!";
+                    break;
+                case 2:
+                    _name.text = "";
+                    _text.text = "위자드\n\n소환 성공!!";
+                    break;
+            }
+            _text.enabled = true;
+            _modelImage[rand].SetActive(true);
+            GameObject.Find("GameManager").GetComponent<Spwan>().UnitSpwan(rand);
         }
-        _text.enabled = true;
-        _modelImage[rand].SetActive(true);
-        GameObject.Find("GameManager").GetComponent<Spwan>().UnitSpwan(rand);
+        else
+        {
+            Debug.Log("골드가 부족합니다");
+        }
     }
     public void CardSpwan()
     {

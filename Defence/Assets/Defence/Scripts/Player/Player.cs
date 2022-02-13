@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     public float NinjaDamage = 10;
     public float WizardDamage = 20;
 
+    public int _playerLevel;
     //크리티컬 확률
     public int ArcherCritical = 0;
     public int NinjaCritical = 0;
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour
     {
         MovingCheck();
         PlayerBuff();
+        PlayerLevel();
         if (moving)//이동할때
         {
             UpdateAnimator();
@@ -253,30 +255,29 @@ public class Player : MonoBehaviour
     {
         if (CardUI.instance != null)
         {
-            //if (ArcherRand < ArcherCritical)//크리티컬
-            //{
-            //    ArcherDamage = (10 + CardUI.instance._buffArcherAtt)* ArcherCriticalDmg;
-            //    //Debug.Log("아쳐 크리티컬");
-            //}
-            //else
-            //{
-            //    ArcherDamage = 10 + CardUI.instance._buffArcherAtt;
-            //}
             AttackSpeed = CardUI.instance._buffAttSpeed;
-            ArcherDamage = 10 + CardUI.instance._buffArcherAtt;
-            NinjaDamage = 10 + CardUI.instance._buffNinjaAtt;
-            WizardDamage = 20 + CardUI.instance._buffWizardAtt;
+            ArcherDamage = 10 + CardUI.instance._buffArcherAtt+(_playerLevel*50);
+            NinjaDamage = 10 + CardUI.instance._buffNinjaAtt+ (_playerLevel * 50);
+            WizardDamage = 20 + CardUI.instance._buffWizardAtt+ (_playerLevel * 50);
 
-            //크리티컬 확률
             ArcherCritical = CardUI.instance._buffArcherCritical;
             NinjaCritical = CardUI.instance._buffNinjaCritical;
             WizardCritical = CardUI.instance._buffWizardCritical;
 
-            
             ArcherCriticalDmg = 1.5f+ CardUI.instance._buffArcherCriticalDmg;
             NinjaCriticalDmg = 1.5f+ CardUI.instance._buffNinjaCriticalDmg;
             WizardCriticalDmg = 1.5f+ CardUI.instance._buffWizardCriticalDmg;
         }
+    }
+
+    public void PlayerLevel()
+    {
+        if (_playerLevel == 1) GetComponent<PlayerLv>().Level_1();
+        else if(_playerLevel == 2) GetComponent<PlayerLv>().Level_2();
+        else if (_playerLevel == 3) GetComponent<PlayerLv>().Level_3();
+        else if (_playerLevel == 4) GetComponent<PlayerLv>().Level_4();
+        else if (_playerLevel == 5) GetComponent<PlayerLv>().Level_5();
+        
     }
 }
 

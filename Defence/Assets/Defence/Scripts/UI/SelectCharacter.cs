@@ -8,22 +8,23 @@ public class SelectCharacter : MonoBehaviour
     int archer_cnt;
     private void Awake()
     {
+
+    }
+    void Start()
+    {
         SelectableCharacter[] chars = FindObjectsOfType<SelectableCharacter>();
         for (int i = 0; i <= (chars.Length - 1); i++)
         {
             selectableChars.Add(chars[i]);
         }
     }
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if(SelectManager.Instance.selecting)
+        if (SelectManager.Instance.selecting)
         {
+            Debug.Log("클릭중");
             CheckSelected();
         }
     }
