@@ -58,6 +58,7 @@
      <Compile Include="Assets\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs" />
      <Compile Include="Assets\Defence\Prefabs\Maps\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
      <Compile Include="Assets\Defence\Prefabs\Maps\AurynSky\Dungeon Pack\Scripts\TrapDoorDemo.cs" />
+     <Compile Include="Assets\Defence\Scene\SceneManagerS.cs" />
      <Compile Include="Assets\Defence\Scripts\Billboard.cs" />
      <Compile Include="Assets\Defence\Scripts\Dmg\CriticalHit.cs" />
      <Compile Include="Assets\Defence\Scripts\Dmg\DmgText.cs" />
@@ -82,6 +83,7 @@
      <Compile Include="Assets\Defence\Scripts\RTS\RTS Selector\Example Scene\Scripts\CameraScript.cs" />
      <Compile Include="Assets\Defence\Scripts\RTS\SelectManager.cs" />
      <Compile Include="Assets\Defence\Scripts\RTS\SelectableCharacter.cs" />
+     <Compile Include="Assets\Defence\Scripts\SFX\SoundManager.cs" />
      <Compile Include="Assets\Defence\Scripts\Tower\CrystalRot.cs" />
      <Compile Include="Assets\Defence\Scripts\Tower\TowerManager.cs" />
      <Compile Include="Assets\Defence\Scripts\UI\CardUI.cs" />

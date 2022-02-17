@@ -37,6 +37,9 @@ public class Enemy : MonoBehaviour
         if (Enemy_HP <= 0)
         {
             info.instance.Gold(10);
+            if(this.tag == "Enemy") Quest.intance._kill++;
+            else if(this.tag =="Boss") Quest.intance._bossKill++;
+
             _die = true;
             Destroy(this.gameObject);
         }

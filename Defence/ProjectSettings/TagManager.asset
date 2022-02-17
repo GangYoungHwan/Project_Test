@@ -16,6 +16,7 @@ TagManager:
   - PArcher
   - PWizard
   - PNinja
+  - Boss
   layers:
   - Default
   - TransparentFX

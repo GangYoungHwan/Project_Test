@@ -169,6 +169,10 @@ public class SelectManager : MonoBehaviour
         {
             soldier.TurnOffSelector();
         }
+        for (int i = 0; i <= (selectableChars.Count - 1); i++)
+        {
+            selectableChars.Remove(selectableChars[i]);
+        }
     }
 
     //Does the calculation for mouse dragging on screen

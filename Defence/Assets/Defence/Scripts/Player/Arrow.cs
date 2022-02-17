@@ -26,7 +26,7 @@ public class Arrow : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if(_target.GetComponent<Enemy>()._die) Destroy(this.gameObject);
+        //if(_target.GetComponent<Enemy>()._die) Destroy(this.gameObject);
     }
 
     public bool TargetFind(Transform Target)
@@ -46,7 +46,7 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy"|| other.gameObject.tag == "Boss")
         {
             other.GetComponent<HitEffect>().hitbloodEffect();
             other.GetComponent<Enemy>().Enemy_HP -= _Dmg;

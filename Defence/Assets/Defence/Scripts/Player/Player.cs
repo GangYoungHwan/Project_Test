@@ -187,9 +187,16 @@ public class Player : MonoBehaviour
     {
         //==========================================================
         GameObject obj = GameObject.FindGameObjectWithTag("Enemy");
-        if (obj == null) return; //오류보기싫어서 넣음
+        GameObject obj2 = GameObject.FindGameObjectWithTag("Boss");
+        if (obj == null&& obj2 ==null) return; //오류보기싫어서 넣음
         //==========================================================
-        FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        if(obj != null) FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        if (obj2 != null) FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Boss"));
+
+        //if (GameObject.FindGameObjectsWithTag("Boss") != null) FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Boss"));
+        //else if (GameObject.FindGameObjectsWithTag("Enemy") != null) FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+
+
         shortDis = Vector3.Distance(gameObject.transform.position, FoundObjects[0].transform.position);
         _target = FoundObjects[0];
         foreach (GameObject found in FoundObjects)

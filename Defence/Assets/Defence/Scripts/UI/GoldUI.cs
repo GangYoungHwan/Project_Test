@@ -28,6 +28,7 @@ public class GoldUI : MonoBehaviour
 
     IEnumerator FadeIn()
     {
+        SoundManager.Instance.PlaySFXSound("Gold", 1);
         Debug.Log("실행중");
         float f = 1;
         while(f>0)

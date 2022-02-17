@@ -20,6 +20,7 @@ public class info : MonoBehaviour
     public int _getExp;
 
     public Text _goldText;
+    public Text _diaText;
     public Text _RoundText;
     public Slider _expSlider;
 
@@ -44,7 +45,7 @@ public class info : MonoBehaviour
         _att = 20;
         _attspeed = 1;
         _gold = 100;
-        _dia = 0;
+        _dia = 3;
     }
 
 
@@ -53,6 +54,7 @@ public class info : MonoBehaviour
         _time += Time.deltaTime;
         //LevelUp();
         _goldText.text = ""+_gold;
+        _diaText.text = "" + _dia;
         _expSlider.maxValue = 60;
         _expSlider.value = _time%60;
         _RoundText.text = "" + ((int)_time/60%60+1);

@@ -70,6 +70,7 @@ public class CardUI : MonoBehaviour
     }
     public void Card()
     {
+        SoundManager.Instance.PlaySFXSound("Menu",1);
         _questUI.SetActive(false);
         if (_cardOn)
         {
@@ -92,6 +93,7 @@ public class CardUI : MonoBehaviour
     }
     public void UnitCardSpwan()
     {
+
         if (info.instance._gold >= 30)
         {
             unitoff();
@@ -102,14 +104,17 @@ public class CardUI : MonoBehaviour
                 case 0:
                     _name.text = "";
                     _text.text = "아쳐\n\n소환 성공!!";
+                    Quest.intance._archerSpwan++;
                     break;
                 case 1:
                     _name.text = "";
                     _text.text = "닌자\n\n소환 성공!!";
+                    Quest.intance._ninjaSpwan++;
                     break;
                 case 2:
                     _name.text = "";
                     _text.text = "위자드\n\n소환 성공!!";
+                    Quest.intance._wizardSpwan++;
                     break;
             }
             _text.enabled = true;
@@ -123,98 +128,101 @@ public class CardUI : MonoBehaviour
     }
     public void CardSpwan()
     {
-        unitoff();
-        int rand = Random.Range(0, 10);
-        if(_skilllist.Contains(rand))//중복된 버프가 있다면?
+        if (info.instance._dia >= 1)
         {
-            if (_skillStack[rand] < _buffMAX)
+            info.instance._dia -= 1;
+            unitoff();
+            int rand = Random.Range(0, 10);
+            if (_skilllist.Contains(rand))//중복된 버프가 있다면?
             {
-                //다이아차감
-                _skillStack[rand]++;//3스택MAX
+                if (_skillStack[rand] < _buffMAX)
+                {
+                    //다이아차감
+                    _skillStack[rand]++;//3스택MAX
+                }
+                else//3스택이상이면
+                {
+                    //다이아 돌려줌
+
+                }
             }
-            else//3스택이상이면
+            else//중복된 버프가 없으면?
             {
-                //다이아 돌려줌
-
+                _skilllist.Add(rand);//스킬리스트 추가
             }
-        }
-        else//중복된 버프가 없으면?
-        {
-            _skilllist.Add(rand);//스킬리스트 추가
-        }
 
-        switch (rand)
-        {
-            case 0:
-
-                _buffAtt += 10;
-                if (_buffAttSpeed < 3)
-                {
-                    _name.text = "PowerUp";
-                    _text.text = "모든 유닛 공격력 증가,공격속도 증가";
-                    _buffAttSpeed++;
-                }
-                else
-                {
-                    _name.text = "PowerUp";
-                    _text.text = "모든 유닛 공격력 증가,공격속도 MAX";
-                }
-                break;
-            case 1:
-                _name.text = "DaggerPowerUp";
-                _text.text = "닌자 공격력 증가";
-                _buffNinjaAtt += 10;
-                break;
-            case 2:
-                _name.text = "FlamePowerUp";
-                _text.text = "위자드 공격력 증가";
-                _buffWizardAtt += 15;
-                break;
-            case 3:
-                _name.text = "ArrowPowerUp";
-                _text.text = "아처 공격력 증가";
-                _buffArcherAtt += 10;
-                break;
-            case 4:
-                _name.text = "Flamedot";
-                _text.text = "위자드 크리티컬데미지 증가";
-                _buffWizardCriticalDmg += 0.3f;
-                break;
-            case 5:
-                _name.text = "AddArrow";
-                _text.text = "아처 크리티컬데미지 증가";
-                _buffArcherCriticalDmg += 0.3f;
-                break;
-            case 6:
-                _name.text = "DarkNess";
-                _text.text = "닌자 크리티컬데미지 증가";
-                _buffNinjaCriticalDmg += 0.3f;
-                break;
-            case 7:
-                _name.text = "CriticalArrow";
-                _text.text = "아처 크리티컬확률 증가";
-                _buffArcherCritical += 10;
-                break;
-            case 8:
-                _name.text = "CriticalDagger";
-                _text.text = "닌자 크리티컬확률 증가";
-                _buffNinjaCritical += 10;
-                break;
-            case 9:
-                _name.text = "CriticalMagic";
-                _text.text = "위자드 크리티컬확률 증가";
-                _buffWizardCritical += 10;
-                break;
-            case 10:
-                _name.text = "미정";
-                _text.text = "미정";
-                break;
+            switch (rand)
+            {
+                case 0:
+                    _buffAtt += 10;
+                    if (_buffAttSpeed < 3)
+                    {
+                        _name.text = "PowerUp";
+                        _text.text = "모든 유닛 공격력 증가,공격속도 증가";
+                        _buffAttSpeed++;
+                    }
+                    else
+                    {
+                        _name.text = "PowerUp";
+                        _text.text = "모든 유닛 공격력 증가,공격속도 MAX";
+                    }
+                    break;
+                case 1:
+                    _name.text = "DaggerPowerUp";
+                    _text.text = "닌자 공격력 증가";
+                    _buffNinjaAtt += 10;
+                    break;
+                case 2:
+                    _name.text = "FlamePowerUp";
+                    _text.text = "위자드 공격력 증가";
+                    _buffWizardAtt += 15;
+                    break;
+                case 3:
+                    _name.text = "ArrowPowerUp";
+                    _text.text = "아처 공격력 증가";
+                    _buffArcherAtt += 10;
+                    break;
+                case 4:
+                    _name.text = "Flamedot";
+                    _text.text = "위자드 크리티컬데미지 증가";
+                    _buffWizardCriticalDmg += 0.3f;
+                    break;
+                case 5:
+                    _name.text = "AddArrow";
+                    _text.text = "아처 크리티컬데미지 증가";
+                    _buffArcherCriticalDmg += 0.3f;
+                    break;
+                case 6:
+                    _name.text = "DarkNess";
+                    _text.text = "닌자 크리티컬데미지 증가";
+                    _buffNinjaCriticalDmg += 0.3f;
+                    break;
+                case 7:
+                    _name.text = "CriticalArrow";
+                    _text.text = "아처 크리티컬확률 증가";
+                    _buffArcherCritical += 10;
+                    break;
+                case 8:
+                    _name.text = "CriticalDagger";
+                    _text.text = "닌자 크리티컬확률 증가";
+                    _buffNinjaCritical += 10;
+                    break;
+                case 9:
+                    _name.text = "CriticalMagic";
+                    _text.text = "위자드 크리티컬확률 증가";
+                    _buffWizardCritical += 10;
+                    break;
+                case 10:
+                    _name.text = "미정";
+                    _text.text = "미정";
+                    break;
+            }
+            _image.sprite = _sprite[rand];
+            buffinfo(rand);
+            _image.enabled = true;
+            _name.enabled = true;
+            _text.enabled = true;
         }
-        _image.sprite = _sprite[rand];
-        buffinfo(rand);
-        _image.enabled = true;
-        _name.enabled = true;
-        _text.enabled = true;
     }
 
     public void buffinfo(int num)
@@ -252,6 +260,7 @@ public class CardUI : MonoBehaviour
 
     public void SetOnOff()
     {
+        SoundManager.Instance.PlaySFXSound("Menu", 1);
         if (_setUiOn)
         {
             _setUI.SetActive(true);
@@ -266,11 +275,13 @@ public class CardUI : MonoBehaviour
 
     public void close()
     {
+        SoundManager.Instance.PlaySFXSound("Menu", 1);
         _setUI.SetActive(false);
     }
 
     public void QuestUI()
     {
+        SoundManager.Instance.PlaySFXSound("Menu", 1);
         this.gameObject.SetActive(false);
         if (_questUiOn)
         {

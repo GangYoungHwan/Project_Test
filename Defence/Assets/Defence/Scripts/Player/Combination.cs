@@ -59,6 +59,7 @@ public class Combination : MonoBehaviour
     */
     public void OnClickCombination()//수정
     {
+        SoundManager.Instance.PlaySFXSound("Menu", 1);
         GameObject[] _archer = GameObject.FindGameObjectsWithTag("Archer");
         GameObject[] _ninja = GameObject.FindGameObjectsWithTag("Ninja");
         GameObject[] _wizard = GameObject.FindGameObjectsWithTag("Wizard");

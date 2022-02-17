@@ -19,6 +19,10 @@ public class TowerManager : MonoBehaviour
     void Update()
     {
         _hpbar.value = Tower_HP;
-        if (Tower_HP < 0) GameOver = true;
+        if (Tower_HP < 0)
+        {
+            SceneManagerS.instance.TitleScene();
+            GameOver = true;
+        }
     }
 }

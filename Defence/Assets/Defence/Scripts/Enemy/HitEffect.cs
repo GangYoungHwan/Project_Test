@@ -21,10 +21,12 @@ public class HitEffect : MonoBehaviour
     }
     public void hitFireEffect()
     {
+        SoundManager.Instance.PlaySFXSound("FireHit", 1);
         _firehitEffect.Play();
     }
     public void hitbloodEffect()
     {
+        SoundManager.Instance.PlaySFXSound("BloodHit", 1);
         _bloodhitEffect.Play();
     }
 }

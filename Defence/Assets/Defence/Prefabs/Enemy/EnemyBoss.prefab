@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 3238375350006000184}
   m_Layer: 0
   m_Name: EnemyBoss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,10 +190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2418dcba1518b541bd9dce4588f98c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy_HP: 1000
+  Enemy_HP: 3000
   Enemy_att: 0
   _hpbar: {fileID: 2612931442488007827}
   EnemyNum: 1
+  _die: 0
 --- !u!114 &3238375350006000184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +494,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: warrok_w_kurniawan
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a9efe7e7377ef66429370db5717fd31e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: a9efe7e7377ef66429370db5717fd31e,
         type: 3}

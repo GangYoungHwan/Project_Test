@@ -7,8 +7,10 @@ public class Volume : MonoBehaviour
 {
     public Slider _volume;
     Text _volumeText;
+    public static Volume instance;
     void Start()
     {
+        instance = this;
         _volumeText = GetComponent<Text>();
         _volume.value = 100;
     }
